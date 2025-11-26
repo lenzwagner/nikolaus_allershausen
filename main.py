@@ -143,25 +143,26 @@ def get_fallback_coordinates(address):
     # Straßen-Dictionary für Allershausen (basierend auf geografischer Lage)
     street_coords = {
         # Nord
-        'seestr': (48.4187, 11.7334),
-        'dominikus-käser': (48.4177, 11.7358),
-        'anton-lamprecht': (48.4180, 11.7369),
-        'mühlbachstr': (48.4177, 11.7328),
-        'auenstraße': (48.4181, 11.7377),
+
+        'seestr': (48.4288453,11.5960513),
+        'dominikus-käser': (48.4361731,11.5945349),
+        'anton-lamprecht': (48.425052,11.5949005),
+        'mühlbachstr': (48.4347749,11.5946798),
+        'auenstraße': (48.4291369,11.5994042),
         'joseph-haydn': (48.4178, 11.7358),
         'franz-liszt': (48.4188, 11.7365),
         'händelstr': (48.4188, 11.7359),
         'mozart': (48.4180, 11.7365),
         
         # Zentrum
-        'pfarrsaal': (48.4169, 11.7345),
+        'pfarrsaal': (48.4348473,11.586955),
         'kirchstr': (48.4172, 11.7337),
         'schulstr': (48.4165, 11.7350),
         'bonhoeffer': (48.4176, 11.7342),
         'kreuth': (48.4144, 11.7336),
         
         # Süd
-        'glonntalstr': (48.4154, 11.7320),
+        'glonntalstr': (48.4321969,11.6009219),
         'bergstr': (48.4145, 11.7315),
         'am anger': (48.4159, 11.7354),
         'kohlstattweg': (48.4148, 11.7345),
@@ -182,7 +183,7 @@ def get_fallback_coordinates(address):
         'tünzhausen': (48.4130, 11.7247),
         'an der linde': (48.4131, 11.7247),
         'zur hochstatt': (48.4130, 11.7245),
-        'amperstr': (48.4128, 11.7252),
+        'amperstr': (48.4391936,11.6256344),
         
         'leonhardsbuch': (48.4103, 11.7318),
         'dorfstr': (48.4103, 11.7316),
@@ -1015,6 +1016,11 @@ def main(input_file, output_dir='outputs', use_nominatim=True,
     # 1. Lade Daten
     print("\n📖 Lade Daten...")
     df = pd.read_excel(input_file)
+    
+    # Normalisiere Krampus-Spalte
+    if 'Krampus?' in df.columns:
+        df['Krampus?'] = df['Krampus?'].astype(str).str.lower().str.strip()
+    
     print(f"✓ {len(df)} Besuche geladen")
     
     # 2. Bedarfsanalyse
