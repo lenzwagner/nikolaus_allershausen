@@ -229,8 +229,17 @@ def geocode_addresses(df, use_nominatim=True, cache_file='koordinaten_cache.csv'
     print("="*100)
     
     df = df.copy()
-    df['Latitude'] = None
-    df['Longitude'] = None
+    
+    # Prüfe auf manuelle Koordinaten
+    has_manual_coords = 'Latitude' in df.columns and 'Longitude' in df.columns
+    
+    if not has_manual_coords:
+        df['Latitude'] = None
+        df['Longitude'] = None
+    else:
+        # Stelle sicher, dass leere Werte als None/NaN behandelt werden
+        df['Latitude'] = pd.to_numeric(df['Latitude'], errors='coerce')
+        df['Longitude'] = pd.to_numeric(df['Longitude'], errors='coerce')
     
     # Versuche Cache zu laden
     cache = {}
@@ -246,11 +255,18 @@ def geocode_addresses(df, use_nominatim=True, cache_file='koordinaten_cache.csv'
     total = len(df)
     success_nominatim = 0
     success_fallback = 0
+    success_manual = 0
     
     for idx, row in df.iterrows():
         address = row['Adresse']
         
-        # Prüfe Cache
+        # 1. Prüfe manuelle Koordinaten
+        if has_manual_coords and pd.notna(row['Latitude']) and pd.notna(row['Longitude']):
+            print(f"[{idx+1}/{total}] Manuell: {address[:40]}... ({row['Latitude']:.5f}, {row['Longitude']:.5f})")
+            success_manual += 1
+            continue
+        
+        # 2. Prüfe Cache
         if address in cache:
             df.at[idx, 'Latitude'] = cache[address][0]
             df.at[idx, 'Longitude'] = cache[address][1]
@@ -291,6 +307,7 @@ def geocode_addresses(df, use_nominatim=True, cache_file='koordinaten_cache.csv'
         print(f"⚠ Cache konnte nicht gespeichert werden: {e}")
     
     print(f"\n📊 Geocoding-Statistik:")
+    print(f"   • Manuell gesetzt: {success_manual}")
     print(f"   • Nominatim erfolgreich: {success_nominatim}")
     print(f"   • Fallback verwendet: {success_fallback}")
     print(f"   • Gesamt: {total}")
