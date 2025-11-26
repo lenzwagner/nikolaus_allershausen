@@ -639,18 +639,28 @@ def assign_staff_ids(routes_df, nikolaus_bedarf, krampus_bedarf):
     
     for (tag, uhrzeit, team), group in routes_df.groupby(['Tag', 'Uhrzeit', 'Team_Nr']):
         # Weise Nikolaus zu
-        nik_id = nikolaus_ids[nik_counter % len(nikolaus_ids)]
+        nik_idx = nik_counter % len(nikolaus_ids)
+        nik_id = nikolaus_ids[nik_idx]
         routes_df.loc[group.index, 'Nikolaus_ID'] = nik_id
         nik_counter += 1
         
-        # Weise Krampus zu (nur für Kinder mit Krampus-Bedarf)
-        for idx in group.index:
-            if routes_df.loc[idx, 'Krampus?'] == 'ja':
-                kram_id = krampus_ids[kram_counter % len(krampus_ids)]
-                routes_df.loc[idx, 'Krampus_ID'] = kram_id
-                kram_counter += 1
-            else:
-                routes_df.loc[idx, 'Krampus_ID'] = '-'
+        # Weise Krampus zu (gekoppelt an Nikolaus)
+        # Prüfe, ob in diesem Team überhaupt ein Krampus benötigt wird
+        needs_krampus = (group['Krampus?'] == 'ja').any()
+        
+        if needs_krampus:
+            # Kopple Krampus an Nikolaus (N1 -> K1, N2 -> K2, etc.)
+            # Falls mehr Nikoläuse als Krampusse, fängt es wieder von vorne an
+            kram_idx = nik_idx % len(krampus_ids)
+            kram_id = krampus_ids[kram_idx]
+            
+            for idx in group.index:
+                if routes_df.loc[idx, 'Krampus?'] == 'ja':
+                    routes_df.loc[idx, 'Krampus_ID'] = kram_id
+                else:
+                    routes_df.loc[idx, 'Krampus_ID'] = '-'
+        else:
+            routes_df.loc[group.index, 'Krampus_ID'] = '-'
     
     # Statistik
     print(f"\n📊 Zuordnungs-Statistik:")
