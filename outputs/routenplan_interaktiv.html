@@ -1,0 +1,3215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c289a85d4c56540c97ab65f565615a83 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; bottom: 50px; left: 50px; width: 200px;
+                background-color: white; border:2px solid grey; z-index:9999;
+                font-size:14px; padding: 10px">
+    <p><b>Legende</b></p>
+    <p><i class="fa fa-map-marker" style="color:red"></i> Mit Krampus</p>
+    <p><i class="fa fa-map-marker" style="color:blue"></i> Ohne Krampus</p>
+    <p><i class="fa fa-circle" style="color:grey"></i> Besuchsreihenfolge</p>
+    <p>━━━ Route</p>
+    </div>
+    
+    
+            <div class="folium-map" id="map_c289a85d4c56540c97ab65f565615a83" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c289a85d4c56540c97ab65f565615a83 = L.map(
+                "map_c289a85d4c56540c97ab65f565615a83",
+                {
+                    center: [48.43176170222981, 11.596177826026825],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_576e5ef8a9e7b5988f6538bd6b1ec3bb = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_576e5ef8a9e7b5988f6538bd6b1ec3bb.addTo(map_c289a85d4c56540c97ab65f565615a83);
+        
+    
+            var feature_group_1d6e0a2239004ea657967e8cdba97f95 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_97c2823b4312552fe45d2116c1436c89 = L.polyline(
+                [[48.425063, 11.59758], [48.4249839782714, 11.5921087265014], [48.4249839782714, 11.5921087265014]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_8f8e12d078488cab0f9a2da9e30da0f4 = L.marker(
+                [48.425063, 11.59758],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_a36a579edbbdca0638e28c5df64cf6b5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_812825fd2e066e8b3470088babb0d5e7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bd4266dbdd82a5997620db28db3f31c1 = $(`<div id="html_bd4266dbdd82a5997620db28db3f31c1" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 1</b><br>             5.12 Freitag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N1<br>             <b>Krampus:</b> K1<br><br>             <b>Kind-ID:</b> 3<br>             <b>Adresse:</b> 85391 Allershausen Anton Lamprecht Ring 36a<br><br>             <b>GPS:</b> 48.425063, 11.597580             </div>`)[0];
+                popup_812825fd2e066e8b3470088babb0d5e7.setContent(html_bd4266dbdd82a5997620db28db3f31c1);
+            
+        
+
+        marker_8f8e12d078488cab0f9a2da9e30da0f4.bindPopup(popup_812825fd2e066e8b3470088babb0d5e7)
+        ;
+
+        
+    
+    
+            marker_8f8e12d078488cab0f9a2da9e30da0f4.bindTooltip(
+                `<div>
+                     ID 3 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8f8e12d078488cab0f9a2da9e30da0f4.setIcon(icon_a36a579edbbdca0638e28c5df64cf6b5);
+            
+    
+            var circle_marker_49d2ef9b5748acd93fdd86dfece22e03 = L.circleMarker(
+                [48.425063, 11.59758],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_78d0a5b7bd50b4452a4ae1984d590a3e = L.marker(
+                [48.425063, 11.59758],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_0d1c1702b43eb1f093a0851e52512817 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_78d0a5b7bd50b4452a4ae1984d590a3e.setIcon(div_icon_0d1c1702b43eb1f093a0851e52512817);
+            
+    
+            var marker_334ece6c86ebd2b43cc3f6c71565377c = L.marker(
+                [48.4249839782714, 11.5921087265014],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_7b1677c9ffd209944cea23ea0be72ef3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b1ed000328e743a5cf4693856f454abf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8c7779216cb181585e2de9420cd2b60b = $(`<div id="html_8c7779216cb181585e2de9420cd2b60b" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 1</b><br>             5.12 Freitag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N1<br>             <b>Krampus:</b> K1<br><br>             <b>Kind-ID:</b> 35<br>             <b>Adresse:</b> Adalharstraße 64<br><br>             <b>GPS:</b> 48.424984, 11.592109             </div>`)[0];
+                popup_b1ed000328e743a5cf4693856f454abf.setContent(html_8c7779216cb181585e2de9420cd2b60b);
+            
+        
+
+        marker_334ece6c86ebd2b43cc3f6c71565377c.bindPopup(popup_b1ed000328e743a5cf4693856f454abf)
+        ;
+
+        
+    
+    
+            marker_334ece6c86ebd2b43cc3f6c71565377c.bindTooltip(
+                `<div>
+                     ID 35 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_334ece6c86ebd2b43cc3f6c71565377c.setIcon(icon_7b1677c9ffd209944cea23ea0be72ef3);
+            
+    
+            var circle_marker_d30ff2ee46ad72b8076fb234f4d0276d = L.circleMarker(
+                [48.4249839782714, 11.5921087265014],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_7076ce9a9c3181ea4109a480fcc22abc = L.marker(
+                [48.4249839782714, 11.5921087265014],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_2c9c32274fb59a453c3c0b977e7331d7 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_7076ce9a9c3181ea4109a480fcc22abc.setIcon(div_icon_2c9c32274fb59a453c3c0b977e7331d7);
+            
+    
+            var marker_5dbfd65b590d2be85f53759ac2801d68 = L.marker(
+                [48.4249839782714, 11.5921087265014],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_bb8079682985645b220393103fb8e80a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_32923f635e5dea974ff71da903274f36 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bc6302c5ef2421e25352868445fbb368 = $(`<div id="html_bc6302c5ef2421e25352868445fbb368" style="width: 100.0%; height: 100.0%;">             <b>Stop 3</b><br>             <b>Team 1</b><br>             5.12 Freitag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N1<br>             <b>Krampus:</b> K1<br><br>             <b>Kind-ID:</b> 36<br>             <b>Adresse:</b> Adalharstraße 64<br><br>             <b>GPS:</b> 48.424984, 11.592109             </div>`)[0];
+                popup_32923f635e5dea974ff71da903274f36.setContent(html_bc6302c5ef2421e25352868445fbb368);
+            
+        
+
+        marker_5dbfd65b590d2be85f53759ac2801d68.bindPopup(popup_32923f635e5dea974ff71da903274f36)
+        ;
+
+        
+    
+    
+            marker_5dbfd65b590d2be85f53759ac2801d68.bindTooltip(
+                `<div>
+                     ID 36 - Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5dbfd65b590d2be85f53759ac2801d68.setIcon(icon_bb8079682985645b220393103fb8e80a);
+            
+    
+            var circle_marker_b916cdffd523f6db80e9e155617d4a2d = L.circleMarker(
+                [48.4249839782714, 11.5921087265014],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_db7854f50f52dc2d0b433c3e92907608 = L.marker(
+                [48.4249839782714, 11.5921087265014],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_3b1945589b7d677a4bc03d70526589bd = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        3\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_db7854f50f52dc2d0b433c3e92907608.setIcon(div_icon_3b1945589b7d677a4bc03d70526589bd);
+            
+    
+            var poly_line_6afb202590e3fcfac6be0e780f753567 = L.polyline(
+                [[48.436997, 11.623306], [48.433561, 11.62452], [48.4346580505371, 11.62744140625]],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4daf4a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_37719c10378699acad86b7d8c96655fd = L.marker(
+                [48.436997, 11.623306],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_675516fbc00304c0aca794e8dc8c38bc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e980711fdc6824d68c7357a055336244 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_32b88ebd9c20cc67287b927eb49dd12b = $(`<div id="html_32b88ebd9c20cc67287b927eb49dd12b" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 2</b><br>             5.12 Freitag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N2<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 6<br>             <b>Adresse:</b> 85391, Tünzhausen, Amperstrasse 2a<br><br>             <b>GPS:</b> 48.436997, 11.623306             </div>`)[0];
+                popup_e980711fdc6824d68c7357a055336244.setContent(html_32b88ebd9c20cc67287b927eb49dd12b);
+            
+        
+
+        marker_37719c10378699acad86b7d8c96655fd.bindPopup(popup_e980711fdc6824d68c7357a055336244)
+        ;
+
+        
+    
+    
+            marker_37719c10378699acad86b7d8c96655fd.bindTooltip(
+                `<div>
+                     ID 6 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_37719c10378699acad86b7d8c96655fd.setIcon(icon_675516fbc00304c0aca794e8dc8c38bc);
+            
+    
+            var circle_marker_faeadc5bd7fc0a8f6ec44b5b9585b497 = L.circleMarker(
+                [48.436997, 11.623306],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_85de5b9cabeced31a2915aef78d8b340 = L.marker(
+                [48.436997, 11.623306],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_65340b9e1be3c7a733efc8025656cb4e = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_85de5b9cabeced31a2915aef78d8b340.setIcon(div_icon_65340b9e1be3c7a733efc8025656cb4e);
+            
+    
+            var marker_2b6c0cceab8d4232fc166bc6307da3b9 = L.marker(
+                [48.433561, 11.62452],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_8265bd7d9b8a405cdb6e6a894ec00128 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bdf96e5fa99d5eae8ca2992616dee870 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8050f40ed0bb70170ec0ec62be0af2ed = $(`<div id="html_8050f40ed0bb70170ec0ec62be0af2ed" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 2</b><br>             5.12 Freitag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N2<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 10<br>             <b>Adresse:</b> 85391 Tünzhausen, An der Linde 4<br><br>             <b>GPS:</b> 48.433561, 11.624520             </div>`)[0];
+                popup_bdf96e5fa99d5eae8ca2992616dee870.setContent(html_8050f40ed0bb70170ec0ec62be0af2ed);
+            
+        
+
+        marker_2b6c0cceab8d4232fc166bc6307da3b9.bindPopup(popup_bdf96e5fa99d5eae8ca2992616dee870)
+        ;
+
+        
+    
+    
+            marker_2b6c0cceab8d4232fc166bc6307da3b9.bindTooltip(
+                `<div>
+                     ID 10 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b6c0cceab8d4232fc166bc6307da3b9.setIcon(icon_8265bd7d9b8a405cdb6e6a894ec00128);
+            
+    
+            var circle_marker_fa5a7b73c1e81be2dd119157b2adcc85 = L.circleMarker(
+                [48.433561, 11.62452],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_5165bac41106266c9cca48bc7367dd56 = L.marker(
+                [48.433561, 11.62452],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_a20db31ee162c830129c1853395a1f3f = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_5165bac41106266c9cca48bc7367dd56.setIcon(div_icon_a20db31ee162c830129c1853395a1f3f);
+            
+    
+            var marker_0c8550860a6eccc736aeb2a023c90ea7 = L.marker(
+                [48.4346580505371, 11.62744140625],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_3c58885decad26cc67377428e50e2c50 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a9a11abb85ce295df1cfdee1d5af47a7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6022d20d25e4743edda19d0a3fd14f5d = $(`<div id="html_6022d20d25e4743edda19d0a3fd14f5d" style="width: 100.0%; height: 100.0%;">             <b>Stop 3</b><br>             <b>Team 2</b><br>             5.12 Freitag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N2<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 39<br>             <b>Adresse:</b> 85391, Allershausen (Tünzhausen) Zur Hochstatt 8a<br><br>             <b>GPS:</b> 48.434658, 11.627441             </div>`)[0];
+                popup_a9a11abb85ce295df1cfdee1d5af47a7.setContent(html_6022d20d25e4743edda19d0a3fd14f5d);
+            
+        
+
+        marker_0c8550860a6eccc736aeb2a023c90ea7.bindPopup(popup_a9a11abb85ce295df1cfdee1d5af47a7)
+        ;
+
+        
+    
+    
+            marker_0c8550860a6eccc736aeb2a023c90ea7.bindTooltip(
+                `<div>
+                     ID 39 - Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0c8550860a6eccc736aeb2a023c90ea7.setIcon(icon_3c58885decad26cc67377428e50e2c50);
+            
+    
+            var circle_marker_09fd8e539111a959d16292de66584a07 = L.circleMarker(
+                [48.4346580505371, 11.62744140625],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_3b9593f7bcbccd75d7fb051861773516 = L.marker(
+                [48.4346580505371, 11.62744140625],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_4ed68bdf042b2d133affe5fba1b229e0 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        3\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_3b9593f7bcbccd75d7fb051861773516.setIcon(div_icon_4ed68bdf042b2d133affe5fba1b229e0);
+            
+    
+            var poly_line_299f06828b6060ff58cd9731be077886 = L.polyline(
+                [[48.428769, 11.597339], [48.436217, 11.596701], [48.43462, 11.581922]],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#984ea3", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_17f9ab467cd37637735d50a03bb645c0 = L.marker(
+                [48.428769, 11.597339],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_05e213f506eef059d8ed6d69bb79d04b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b52b20b9980d06be60eb5fa005d70ea7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a46e21e56f8ba13280c1466e2531aaf6 = $(`<div id="html_a46e21e56f8ba13280c1466e2531aaf6" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 3</b><br>             5.12 Freitag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N3<br>             <b>Krampus:</b> K3<br><br>             <b>Kind-ID:</b> 1<br>             <b>Adresse:</b> Seestrasse 2<br><br>             <b>GPS:</b> 48.428769, 11.597339             </div>`)[0];
+                popup_b52b20b9980d06be60eb5fa005d70ea7.setContent(html_a46e21e56f8ba13280c1466e2531aaf6);
+            
+        
+
+        marker_17f9ab467cd37637735d50a03bb645c0.bindPopup(popup_b52b20b9980d06be60eb5fa005d70ea7)
+        ;
+
+        
+    
+    
+            marker_17f9ab467cd37637735d50a03bb645c0.bindTooltip(
+                `<div>
+                     ID 1 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_17f9ab467cd37637735d50a03bb645c0.setIcon(icon_05e213f506eef059d8ed6d69bb79d04b);
+            
+    
+            var circle_marker_580c6484ea35edeb404a2c094543dea0 = L.circleMarker(
+                [48.428769, 11.597339],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_bc3ccf1f7c41be444f699822bca2a7b2 = L.marker(
+                [48.428769, 11.597339],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_5bc549908340eb97fe50e8376f201d9f = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_bc3ccf1f7c41be444f699822bca2a7b2.setIcon(div_icon_5bc549908340eb97fe50e8376f201d9f);
+            
+    
+            var marker_432c30fba2f71140a04c4414745bdf5c = L.marker(
+                [48.436217, 11.596701],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_831545aa8baa50bfff2bc90fd718d620 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_909fb7d32bff9798e7e734d886494b81 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ab1be21b585f19727c7a028adb891349 = $(`<div id="html_ab1be21b585f19727c7a028adb891349" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 3</b><br>             5.12 Freitag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N3<br>             <b>Krampus:</b> K3<br><br>             <b>Kind-ID:</b> 2<br>             <b>Adresse:</b> 85391 Allershausen, Dominikus-Käser-Str 28a<br><br>             <b>GPS:</b> 48.436217, 11.596701             </div>`)[0];
+                popup_909fb7d32bff9798e7e734d886494b81.setContent(html_ab1be21b585f19727c7a028adb891349);
+            
+        
+
+        marker_432c30fba2f71140a04c4414745bdf5c.bindPopup(popup_909fb7d32bff9798e7e734d886494b81)
+        ;
+
+        
+    
+    
+            marker_432c30fba2f71140a04c4414745bdf5c.bindTooltip(
+                `<div>
+                     ID 2 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_432c30fba2f71140a04c4414745bdf5c.setIcon(icon_831545aa8baa50bfff2bc90fd718d620);
+            
+    
+            var circle_marker_376a2417c61aa2294ee214153f403570 = L.circleMarker(
+                [48.436217, 11.596701],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_05f854a4a1831877deb9d7e6f490aef7 = L.marker(
+                [48.436217, 11.596701],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_d672836f752bb0eb5560f72014a9e8b9 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_05f854a4a1831877deb9d7e6f490aef7.setIcon(div_icon_d672836f752bb0eb5560f72014a9e8b9);
+            
+    
+            var marker_484ebc67969cdea4b75d96d299b3c424 = L.marker(
+                [48.43462, 11.581922],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_225693ea0a44322bd950d1fdc79e2260 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_036a5567ed1eaeb2152a1cff4f06ce53 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f290544b04c86dc9b023cffe665c9d74 = $(`<div id="html_f290544b04c86dc9b023cffe665c9d74" style="width: 100.0%; height: 100.0%;">             <b>Stop 3</b><br>             <b>Team 3</b><br>             5.12 Freitag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N3<br>             <b>Krampus:</b> K3<br><br>             <b>Kind-ID:</b> 11<br>             <b>Adresse:</b> Am Moosbolt 4<br><br>             <b>GPS:</b> 48.434620, 11.581922             </div>`)[0];
+                popup_036a5567ed1eaeb2152a1cff4f06ce53.setContent(html_f290544b04c86dc9b023cffe665c9d74);
+            
+        
+
+        marker_484ebc67969cdea4b75d96d299b3c424.bindPopup(popup_036a5567ed1eaeb2152a1cff4f06ce53)
+        ;
+
+        
+    
+    
+            marker_484ebc67969cdea4b75d96d299b3c424.bindTooltip(
+                `<div>
+                     ID 11 - Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_484ebc67969cdea4b75d96d299b3c424.setIcon(icon_225693ea0a44322bd950d1fdc79e2260);
+            
+    
+            var circle_marker_880a7e73fa874094c077ec0422236ffc = L.circleMarker(
+                [48.43462, 11.581922],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_9ea7951d3c41bf0d2c13db3c11234323 = L.marker(
+                [48.43462, 11.581922],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_8561ee61306f13b2ad3817f37caf6fce = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        3\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_9ea7951d3c41bf0d2c13db3c11234323.setIcon(div_icon_8561ee61306f13b2ad3817f37caf6fce);
+            
+    
+            var poly_line_b8bcabfddc088c78513186b996a09c80 = L.polyline(
+                [[48.434362, 11.594704]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_cc94debe733ce1ff387c5cb77faa462e = L.marker(
+                [48.434362, 11.594704],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_68e0bc0b939134b8e839e97cce432706 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_206c30fc27a4e28c130f157e2bd4776f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7ae50ad7154530074743a92a3ffe9881 = $(`<div id="html_7ae50ad7154530074743a92a3ffe9881" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 1</b><br>             5.12 Freitag, 18-19 Uhr<br><br>             <b>Nikolaus:</b> N4<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 7<br>             <b>Adresse:</b> 85391 Allershausen, Mühlbachstr. 25<br><br>             <b>GPS:</b> 48.434362, 11.594704             </div>`)[0];
+                popup_206c30fc27a4e28c130f157e2bd4776f.setContent(html_7ae50ad7154530074743a92a3ffe9881);
+            
+        
+
+        marker_cc94debe733ce1ff387c5cb77faa462e.bindPopup(popup_206c30fc27a4e28c130f157e2bd4776f)
+        ;
+
+        
+    
+    
+            marker_cc94debe733ce1ff387c5cb77faa462e.bindTooltip(
+                `<div>
+                     ID 7 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cc94debe733ce1ff387c5cb77faa462e.setIcon(icon_68e0bc0b939134b8e839e97cce432706);
+            
+    
+            var circle_marker_2fd5ea419af64c97f8c61c3df07ae7a9 = L.circleMarker(
+                [48.434362, 11.594704],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_41243307b73423f0e6c0403bc38ab1c8 = L.marker(
+                [48.434362, 11.594704],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_98fecadbe359054bad504cf34e51d1df = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_41243307b73423f0e6c0403bc38ab1c8.setIcon(div_icon_98fecadbe359054bad504cf34e51d1df);
+            
+    
+            var poly_line_39413b32487a63899eae2ba72396ba2f = L.polyline(
+                [[48.426256, 11.59824], [48.428989, 11.60088], [48.432186, 11.603498]],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4daf4a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_2df51b0ad795ebe98e682bb75d1b6ff0 = L.marker(
+                [48.426256, 11.59824],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_4fa019df781af096275ad854a85dd73b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ab70c0781e120f126f90b444e5d1f46e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d39eccd9e9ac50cf0bd71b06fb223f3b = $(`<div id="html_d39eccd9e9ac50cf0bd71b06fb223f3b" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 2</b><br>             5.12 Freitag, 18-19 Uhr<br><br>             <b>Nikolaus:</b> N5<br>             <b>Krampus:</b> K5<br><br>             <b>Kind-ID:</b> 5<br>             <b>Adresse:</b> Seestr.19,85391 allershausen <br><br>             <b>GPS:</b> 48.426256, 11.598240             </div>`)[0];
+                popup_ab70c0781e120f126f90b444e5d1f46e.setContent(html_d39eccd9e9ac50cf0bd71b06fb223f3b);
+            
+        
+
+        marker_2df51b0ad795ebe98e682bb75d1b6ff0.bindPopup(popup_ab70c0781e120f126f90b444e5d1f46e)
+        ;
+
+        
+    
+    
+            marker_2df51b0ad795ebe98e682bb75d1b6ff0.bindTooltip(
+                `<div>
+                     ID 5 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2df51b0ad795ebe98e682bb75d1b6ff0.setIcon(icon_4fa019df781af096275ad854a85dd73b);
+            
+    
+            var circle_marker_38f704ab5b33e40cd7ee4a04c2b311f4 = L.circleMarker(
+                [48.426256, 11.59824],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_c00c9e7c61322e022cd410ac5a721dab = L.marker(
+                [48.426256, 11.59824],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_adf468b839c2fec20e479bfb5ff50ce4 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_c00c9e7c61322e022cd410ac5a721dab.setIcon(div_icon_adf468b839c2fec20e479bfb5ff50ce4);
+            
+    
+            var marker_891f5681e34d0c1898f5a0ac44c0b822 = L.marker(
+                [48.428989, 11.60088],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_661e993a7aa31f0a0af41b08434079ec = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_03d6c2cc16ee979fc5b47118dcb3a80a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_67092d1dc762ce562675f1c5a5b6397c = $(`<div id="html_67092d1dc762ce562675f1c5a5b6397c" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 2</b><br>             5.12 Freitag, 18-19 Uhr<br><br>             <b>Nikolaus:</b> N5<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 9<br>             <b>Adresse:</b> 85391, Allershausen, Auenstraße, 6a<br><br>             <b>GPS:</b> 48.428989, 11.600880             </div>`)[0];
+                popup_03d6c2cc16ee979fc5b47118dcb3a80a.setContent(html_67092d1dc762ce562675f1c5a5b6397c);
+            
+        
+
+        marker_891f5681e34d0c1898f5a0ac44c0b822.bindPopup(popup_03d6c2cc16ee979fc5b47118dcb3a80a)
+        ;
+
+        
+    
+    
+            marker_891f5681e34d0c1898f5a0ac44c0b822.bindTooltip(
+                `<div>
+                     ID 9 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_891f5681e34d0c1898f5a0ac44c0b822.setIcon(icon_661e993a7aa31f0a0af41b08434079ec);
+            
+    
+            var circle_marker_acb875564159b8a28b9211f9870d9c7f = L.circleMarker(
+                [48.428989, 11.60088],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_ffc600f7b6eb1de289f86b9d63fd834e = L.marker(
+                [48.428989, 11.60088],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_306c897970b26b34ffb545f3217e57b9 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_ffc600f7b6eb1de289f86b9d63fd834e.setIcon(div_icon_306c897970b26b34ffb545f3217e57b9);
+            
+    
+            var marker_e2cd5edaca3c9110952cbed5c50bdc75 = L.marker(
+                [48.432186, 11.603498],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_195f626d2faa7f50a201317d3f2eeeee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6c72d1eb99d6574f8a9e4dec80ae8f29 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e8d15975be1e151e34daabbb936b971c = $(`<div id="html_e8d15975be1e151e34daabbb936b971c" style="width: 100.0%; height: 100.0%;">             <b>Stop 3</b><br>             <b>Team 2</b><br>             5.12 Freitag, 18-19 Uhr<br><br>             <b>Nikolaus:</b> N5<br>             <b>Krampus:</b> K5<br><br>             <b>Kind-ID:</b> 8<br>             <b>Adresse:</b> Glonntalstraße 33, Allershausen<br><br>             <b>GPS:</b> 48.432186, 11.603498             </div>`)[0];
+                popup_6c72d1eb99d6574f8a9e4dec80ae8f29.setContent(html_e8d15975be1e151e34daabbb936b971c);
+            
+        
+
+        marker_e2cd5edaca3c9110952cbed5c50bdc75.bindPopup(popup_6c72d1eb99d6574f8a9e4dec80ae8f29)
+        ;
+
+        
+    
+    
+            marker_e2cd5edaca3c9110952cbed5c50bdc75.bindTooltip(
+                `<div>
+                     ID 8 - Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e2cd5edaca3c9110952cbed5c50bdc75.setIcon(icon_195f626d2faa7f50a201317d3f2eeeee);
+            
+    
+            var circle_marker_1e6a1e045e21b758a557c1207c83a7cc = L.circleMarker(
+                [48.432186, 11.603498],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_809ba46bc3edfc1f10106d8c8acd56f4 = L.marker(
+                [48.432186, 11.603498],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_1e5548c273a0cf7fae90f4a36778e9a5 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        3\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_809ba46bc3edfc1f10106d8c8acd56f4.setIcon(div_icon_1e5548c273a0cf7fae90f4a36778e9a5);
+            
+    
+            var poly_line_079946bb96fc4c7da996e75a433630f2 = L.polyline(
+                [[48.4283561706543, 11.59894657135]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_e5f2dfd481e38faab5df6d4e2c6750b8 = L.marker(
+                [48.4283561706543, 11.59894657135],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_56a0fb00d18ca7c7f50c19929ee7c7a3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_695dfc9581548f5ceecf519405f28b73 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4e40ff9ee6a9f99cbefbc70c3342d7e0 = $(`<div id="html_4e40ff9ee6a9f99cbefbc70c3342d7e0" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 1</b><br>             5.12 Freitag, 19-20 Uhr<br><br>             <b>Nikolaus:</b> N6<br>             <b>Krampus:</b> K1<br><br>             <b>Kind-ID:</b> 38<br>             <b>Adresse:</b> Händelstr 1 B<br><br>             <b>GPS:</b> 48.428356, 11.598947             </div>`)[0];
+                popup_695dfc9581548f5ceecf519405f28b73.setContent(html_4e40ff9ee6a9f99cbefbc70c3342d7e0);
+            
+        
+
+        marker_e5f2dfd481e38faab5df6d4e2c6750b8.bindPopup(popup_695dfc9581548f5ceecf519405f28b73)
+        ;
+
+        
+    
+    
+            marker_e5f2dfd481e38faab5df6d4e2c6750b8.bindTooltip(
+                `<div>
+                     ID 38 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e5f2dfd481e38faab5df6d4e2c6750b8.setIcon(icon_56a0fb00d18ca7c7f50c19929ee7c7a3);
+            
+    
+            var circle_marker_f6d71bf8fef6daf8c7690f2b1fac7f9a = L.circleMarker(
+                [48.4283561706543, 11.59894657135],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_03890781e7e839c08f1326b435517a0b = L.marker(
+                [48.4283561706543, 11.59894657135],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_fb2b6bfc2de4c489d2880c1bbf499ca5 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_03890781e7e839c08f1326b435517a0b.setIcon(div_icon_fb2b6bfc2de4c489d2880c1bbf499ca5);
+            
+    
+            var poly_line_9e8d27d99f36eca745e8ba3a185bb1aa = L.polyline(
+                [[48.433643, 11.602454]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_b1d9dfc54fffb9bac7f353681b9c1491 = L.marker(
+                [48.433643, 11.602454],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var icon_d3bb94d0019dbb07b8f7b97bcc59de67 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b5e7d18f32beae02ecd467629db499b4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_55eaa09941d4598d7c15bfecf73b4c02 = $(`<div id="html_55eaa09941d4598d7c15bfecf73b4c02" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 1</b><br>             5.12 Freitag, später<br><br>             <b>Nikolaus:</b> N7<br>             <b>Krampus:</b> K2<br><br>             <b>Kind-ID:</b> 4<br>             <b>Adresse:</b> Allershausen, Pfarrsaal<br><br>             <b>GPS:</b> 48.433643, 11.602454             </div>`)[0];
+                popup_b5e7d18f32beae02ecd467629db499b4.setContent(html_55eaa09941d4598d7c15bfecf73b4c02);
+            
+        
+
+        marker_b1d9dfc54fffb9bac7f353681b9c1491.bindPopup(popup_b5e7d18f32beae02ecd467629db499b4)
+        ;
+
+        
+    
+    
+            marker_b1d9dfc54fffb9bac7f353681b9c1491.bindTooltip(
+                `<div>
+                     ID 4 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b1d9dfc54fffb9bac7f353681b9c1491.setIcon(icon_d3bb94d0019dbb07b8f7b97bcc59de67);
+            
+    
+            var circle_marker_4ae47d89cfe49990256a28521cb0ad2b = L.circleMarker(
+                [48.433643, 11.602454],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var marker_75f4debfad348de1e849f5781fedad2a = L.marker(
+                [48.433643, 11.602454],
+                {
+}
+            ).addTo(feature_group_1d6e0a2239004ea657967e8cdba97f95);
+        
+    
+            var div_icon_e5e3e2e24830d9f13cc44cbb01f355ca = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_75f4debfad348de1e849f5781fedad2a.setIcon(div_icon_e5e3e2e24830d9f13cc44cbb01f355ca);
+            
+    
+            feature_group_1d6e0a2239004ea657967e8cdba97f95.addTo(map_c289a85d4c56540c97ab65f565615a83);
+        
+    
+            var feature_group_66f5bbf76c227a3dbeb1249f771cea7b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_9c97f7b8758baf5aa40740204d514e4c = L.polyline(
+                [[48.430188, 11.58537], [48.4295196533203, 11.5832452774047], [48.433445, 11.591447]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_4ed48120506ac85e8e31e919d84cae77 = L.marker(
+                [48.430188, 11.58537],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_cd789d247883bdac463afd6a3356aa12 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4dff5f3daaab186b520ae2dc1e8d7034 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_25fcc9d8c8b0191f7f71e406ad74c23f = $(`<div id="html_25fcc9d8c8b0191f7f71e406ad74c23f" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 1</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N1<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 19<br>             <b>Adresse:</b> 85391,Allershausen, Albert-Schweitzer-Str. 3a<br><br>             <b>GPS:</b> 48.430188, 11.585370             </div>`)[0];
+                popup_4dff5f3daaab186b520ae2dc1e8d7034.setContent(html_25fcc9d8c8b0191f7f71e406ad74c23f);
+            
+        
+
+        marker_4ed48120506ac85e8e31e919d84cae77.bindPopup(popup_4dff5f3daaab186b520ae2dc1e8d7034)
+        ;
+
+        
+    
+    
+            marker_4ed48120506ac85e8e31e919d84cae77.bindTooltip(
+                `<div>
+                     ID 19 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4ed48120506ac85e8e31e919d84cae77.setIcon(icon_cd789d247883bdac463afd6a3356aa12);
+            
+    
+            var circle_marker_05ed459d083cfa35b0c4272809088310 = L.circleMarker(
+                [48.430188, 11.58537],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_4062fd338df37f375f43527d99f0a2af = L.marker(
+                [48.430188, 11.58537],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_9848175886514a49a6faa5264e366980 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_4062fd338df37f375f43527d99f0a2af.setIcon(div_icon_9848175886514a49a6faa5264e366980);
+            
+    
+            var marker_96d618e02a78386971e68d06d769041d = L.marker(
+                [48.4295196533203, 11.5832452774047],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_cda202e741e8c8961a292d0e2294f11a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4cc660938040be13557d72f2eb013501 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2ae4a637df34b95c5859544e77bdc0b0 = $(`<div id="html_2ae4a637df34b95c5859544e77bdc0b0" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 1</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N1<br>             <b>Krampus:</b> K1<br><br>             <b>Kind-ID:</b> 31<br>             <b>Adresse:</b> Bonhoeffer Str 4, 85391 Allershausen<br><br>             <b>GPS:</b> 48.429520, 11.583245             </div>`)[0];
+                popup_4cc660938040be13557d72f2eb013501.setContent(html_2ae4a637df34b95c5859544e77bdc0b0);
+            
+        
+
+        marker_96d618e02a78386971e68d06d769041d.bindPopup(popup_4cc660938040be13557d72f2eb013501)
+        ;
+
+        
+    
+    
+            marker_96d618e02a78386971e68d06d769041d.bindTooltip(
+                `<div>
+                     ID 31 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_96d618e02a78386971e68d06d769041d.setIcon(icon_cda202e741e8c8961a292d0e2294f11a);
+            
+    
+            var circle_marker_9612e19ce6ad4cd22d0a040a646c6689 = L.circleMarker(
+                [48.4295196533203, 11.5832452774047],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_f1cdbe970ee0a6b6db8ba6ea54165a69 = L.marker(
+                [48.4295196533203, 11.5832452774047],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_5b33705639ebbb9e2d21e5a3fc02c469 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_f1cdbe970ee0a6b6db8ba6ea54165a69.setIcon(div_icon_5b33705639ebbb9e2d21e5a3fc02c469);
+            
+    
+            var marker_b93f8f87a438d427fd4a5610949532dd = L.marker(
+                [48.433445, 11.591447],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_bad146228a2cf55c8fe5f38dfc3a5a31 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_809375ba5b8e2a927257d9957ed5ab9e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a21da3c7170aaae2d79aa99001719bc6 = $(`<div id="html_a21da3c7170aaae2d79aa99001719bc6" style="width: 100.0%; height: 100.0%;">             <b>Stop 3</b><br>             <b>Team 1</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N1<br>             <b>Krampus:</b> K1<br><br>             <b>Kind-ID:</b> 26<br>             <b>Adresse:</b> Breimannweg 19 85391 Allershausen<br><br>             <b>GPS:</b> 48.433445, 11.591447             </div>`)[0];
+                popup_809375ba5b8e2a927257d9957ed5ab9e.setContent(html_a21da3c7170aaae2d79aa99001719bc6);
+            
+        
+
+        marker_b93f8f87a438d427fd4a5610949532dd.bindPopup(popup_809375ba5b8e2a927257d9957ed5ab9e)
+        ;
+
+        
+    
+    
+            marker_b93f8f87a438d427fd4a5610949532dd.bindTooltip(
+                `<div>
+                     ID 26 - Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b93f8f87a438d427fd4a5610949532dd.setIcon(icon_bad146228a2cf55c8fe5f38dfc3a5a31);
+            
+    
+            var circle_marker_1407ad6a14e2e76931c610fb3704c2e6 = L.circleMarker(
+                [48.433445, 11.591447],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_af5977aed5d4b5db1460e72424fdc962 = L.marker(
+                [48.433445, 11.591447],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_85b10c50ed1a0b84caad4b1e53607912 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        3\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_af5977aed5d4b5db1460e72424fdc962.setIcon(div_icon_85b10c50ed1a0b84caad4b1e53607912);
+            
+    
+            var poly_line_cf1e3e9420d90f92b3674496d5d3cef7 = L.polyline(
+                [[48.4343224, 11.6005968], [48.430498, 11.61062], [48.4332126, 11.5140135]],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4daf4a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_8962fefadc63335c13066ba2b23d7338 = L.marker(
+                [48.4343224, 11.6005968],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_5f6f80c2cf51ac743d49aebac2f981b6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5d03799381d605d49f80957927783bae = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8f5be80fb8d12b3129ff26fad720dfb5 = $(`<div id="html_8f5be80fb8d12b3129ff26fad720dfb5" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 2</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N2<br>             <b>Krampus:</b> K2<br><br>             <b>Kind-ID:</b> 16<br>             <b>Adresse:</b> Kirchstraße 1a, 85391 Allershausen<br><br>             <b>GPS:</b> 48.434322, 11.600597             </div>`)[0];
+                popup_5d03799381d605d49f80957927783bae.setContent(html_8f5be80fb8d12b3129ff26fad720dfb5);
+            
+        
+
+        marker_8962fefadc63335c13066ba2b23d7338.bindPopup(popup_5d03799381d605d49f80957927783bae)
+        ;
+
+        
+    
+    
+            marker_8962fefadc63335c13066ba2b23d7338.bindTooltip(
+                `<div>
+                     ID 16 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8962fefadc63335c13066ba2b23d7338.setIcon(icon_5f6f80c2cf51ac743d49aebac2f981b6);
+            
+    
+            var circle_marker_64fefc8e8ca2f1db852048b081d5ac4c = L.circleMarker(
+                [48.4343224, 11.6005968],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_1a60903d9b2084cbca6490f9069ccb29 = L.marker(
+                [48.4343224, 11.6005968],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_c98f9e13421acd43b52f7e2c532d14b2 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_1a60903d9b2084cbca6490f9069ccb29.setIcon(div_icon_c98f9e13421acd43b52f7e2c532d14b2);
+            
+    
+            var marker_3df49342dd06c4e70b5b16e1e51249ba = L.marker(
+                [48.430498, 11.61062],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_20a33a4b5ccacda41e0afff5db3c2177 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_490a4c5bdb0e0dfa91f18636f5d9505b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3081bb62d1a0abf1429cf0c07276fc62 = $(`<div id="html_3081bb62d1a0abf1429cf0c07276fc62" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 2</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N2<br>             <b>Krampus:</b> K2<br><br>             <b>Kind-ID:</b> 21<br>             <b>Adresse:</b> 85391, Allershausen, Göttschlag 24<br><br>             <b>GPS:</b> 48.430498, 11.610620             </div>`)[0];
+                popup_490a4c5bdb0e0dfa91f18636f5d9505b.setContent(html_3081bb62d1a0abf1429cf0c07276fc62);
+            
+        
+
+        marker_3df49342dd06c4e70b5b16e1e51249ba.bindPopup(popup_490a4c5bdb0e0dfa91f18636f5d9505b)
+        ;
+
+        
+    
+    
+            marker_3df49342dd06c4e70b5b16e1e51249ba.bindTooltip(
+                `<div>
+                     ID 21 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3df49342dd06c4e70b5b16e1e51249ba.setIcon(icon_20a33a4b5ccacda41e0afff5db3c2177);
+            
+    
+            var circle_marker_322618e1fb37ef3fac64271919ebc3b6 = L.circleMarker(
+                [48.430498, 11.61062],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_49e39294a20a50e31571b10cf8903ebb = L.marker(
+                [48.430498, 11.61062],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_8552c4d6390b79ac230bedff069b3988 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_49e39294a20a50e31571b10cf8903ebb.setIcon(div_icon_8552c4d6390b79ac230bedff069b3988);
+            
+    
+            var marker_b0ba54f3818c206088a5673ec47db831 = L.marker(
+                [48.4332126, 11.5140135],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_eb7862381ccd5a5b8479f75deb0e4663 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_969c3fa42e2bde4c05605a948cbe17c5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_63cd32484d1d75843ef54f25b9bccef1 = $(`<div id="html_63cd32484d1d75843ef54f25b9bccef1" style="width: 100.0%; height: 100.0%;">             <b>Stop 3</b><br>             <b>Team 2</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N2<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 27<br>             <b>Adresse:</b> 85391 Allershausen (Mitte)<br><br>             <b>GPS:</b> 48.433213, 11.514014             </div>`)[0];
+                popup_969c3fa42e2bde4c05605a948cbe17c5.setContent(html_63cd32484d1d75843ef54f25b9bccef1);
+            
+        
+
+        marker_b0ba54f3818c206088a5673ec47db831.bindPopup(popup_969c3fa42e2bde4c05605a948cbe17c5)
+        ;
+
+        
+    
+    
+            marker_b0ba54f3818c206088a5673ec47db831.bindTooltip(
+                `<div>
+                     ID 27 - Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b0ba54f3818c206088a5673ec47db831.setIcon(icon_eb7862381ccd5a5b8479f75deb0e4663);
+            
+    
+            var circle_marker_caccea661f54092b16b8c1299c96a738 = L.circleMarker(
+                [48.4332126, 11.5140135],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_8dc2245f9246b7c3841d7945be11c21b = L.marker(
+                [48.4332126, 11.5140135],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_1af4b36b7b802a5bfa24c68f9792c398 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        3\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_8dc2245f9246b7c3841d7945be11c21b.setIcon(div_icon_1af4b36b7b802a5bfa24c68f9792c398);
+            
+    
+            var poly_line_8e32103173cc6b9b745a3d13b84b9c0c = L.polyline(
+                [[48.4264602661132, 11.5963563919067], [48.4353173, 11.5981507], [48.4758245, 11.5654661]],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#984ea3", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_2324b4985d0b969387725562687241ea = L.marker(
+                [48.4264602661132, 11.5963563919067],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_ef99069e8cb2b8abf143aefcf9ddb7f0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e24d9fab73a962143781d4469875e228 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_978282bcdff7fde21f67ba049d73bf3e = $(`<div id="html_978282bcdff7fde21f67ba049d73bf3e" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 3</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N3<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 12<br>             <b>Adresse:</b> 85391, Allershausen, Joseph-Haydn-Str. 5b<br><br>             <b>GPS:</b> 48.426460, 11.596356             </div>`)[0];
+                popup_e24d9fab73a962143781d4469875e228.setContent(html_978282bcdff7fde21f67ba049d73bf3e);
+            
+        
+
+        marker_2324b4985d0b969387725562687241ea.bindPopup(popup_e24d9fab73a962143781d4469875e228)
+        ;
+
+        
+    
+    
+            marker_2324b4985d0b969387725562687241ea.bindTooltip(
+                `<div>
+                     ID 12 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2324b4985d0b969387725562687241ea.setIcon(icon_ef99069e8cb2b8abf143aefcf9ddb7f0);
+            
+    
+            var circle_marker_77ca86c96874fc705519844a513a6cb1 = L.circleMarker(
+                [48.4264602661132, 11.5963563919067],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_4525c62dbeb048716bcaf506c6fff907 = L.marker(
+                [48.4264602661132, 11.5963563919067],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_339995978c26933f1071bbe35b575a43 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_4525c62dbeb048716bcaf506c6fff907.setIcon(div_icon_339995978c26933f1071bbe35b575a43);
+            
+    
+            var marker_4b21735c8b5e104399529bb66029af28 = L.marker(
+                [48.4353173, 11.5981507],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_8d80d31544c5c980aadc2a970bc55877 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ac07ad1cba966aaf4894aebe35189849 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6c7d5d9515d8ba1f60cd2dcf9ef81c73 = $(`<div id="html_6c7d5d9515d8ba1f60cd2dcf9ef81c73" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 3</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N3<br>             <b>Krampus:</b> K3<br><br>             <b>Kind-ID:</b> 30<br>             <b>Adresse:</b> 85391 Mühlbachstr 12a <br><br>             <b>GPS:</b> 48.435317, 11.598151             </div>`)[0];
+                popup_ac07ad1cba966aaf4894aebe35189849.setContent(html_6c7d5d9515d8ba1f60cd2dcf9ef81c73);
+            
+        
+
+        marker_4b21735c8b5e104399529bb66029af28.bindPopup(popup_ac07ad1cba966aaf4894aebe35189849)
+        ;
+
+        
+    
+    
+            marker_4b21735c8b5e104399529bb66029af28.bindTooltip(
+                `<div>
+                     ID 30 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4b21735c8b5e104399529bb66029af28.setIcon(icon_8d80d31544c5c980aadc2a970bc55877);
+            
+    
+            var circle_marker_b4329bcb6bb6884032197d338414dcbd = L.circleMarker(
+                [48.4353173, 11.5981507],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_58c35dc087653315013d81227e830e80 = L.marker(
+                [48.4353173, 11.5981507],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_35940fdde3262e48a93a8d2806eb16bd = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_58c35dc087653315013d81227e830e80.setIcon(div_icon_35940fdde3262e48a93a8d2806eb16bd);
+            
+    
+            var marker_fafcd29d591f8d44e39724b4417c7c14 = L.marker(
+                [48.4758245, 11.5654661],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_e7ecf53e0414d8242c4889a8b6162767 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5b40528c5cea129568f2dd9b9be4e49d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a11396887040b8e2ec8d623237369b6f = $(`<div id="html_a11396887040b8e2ec8d623237369b6f" style="width: 100.0%; height: 100.0%;">             <b>Stop 3</b><br>             <b>Team 3</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N3<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 14<br>             <b>Adresse:</b> Am Anger 26 Allershausen 85391 <br><br>             <b>GPS:</b> 48.475825, 11.565466             </div>`)[0];
+                popup_5b40528c5cea129568f2dd9b9be4e49d.setContent(html_a11396887040b8e2ec8d623237369b6f);
+            
+        
+
+        marker_fafcd29d591f8d44e39724b4417c7c14.bindPopup(popup_5b40528c5cea129568f2dd9b9be4e49d)
+        ;
+
+        
+    
+    
+            marker_fafcd29d591f8d44e39724b4417c7c14.bindTooltip(
+                `<div>
+                     ID 14 - Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fafcd29d591f8d44e39724b4417c7c14.setIcon(icon_e7ecf53e0414d8242c4889a8b6162767);
+            
+    
+            var circle_marker_5ddb13675b636be8633be720c33f23a5 = L.circleMarker(
+                [48.4758245, 11.5654661],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_897f69cdce846c742c7b61b30b460d21 = L.marker(
+                [48.4758245, 11.5654661],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_00903171f86bec280ebb998bb70b86fc = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        3\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_897f69cdce846c742c7b61b30b460d21.setIcon(div_icon_00903171f86bec280ebb998bb70b86fc);
+            
+    
+            var poly_line_e797d19b4c7e9b38021317e1fdefd08a = L.polyline(
+                [[48.458248, 11.652058], [48.429034, 11.595351]],
+                {"bubblingMouseEvents": true, "color": "#ff7f00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#ff7f00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_56233a1a492cb164aeca593c1e506c29 = L.marker(
+                [48.458248, 11.652058],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_1d06a5bda10802ddd13c1578cf22e3ba = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1025da2979bf5ef44359aa40d8be584c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d60f8f73c0eb70bbc17155a031abb39e = $(`<div id="html_d60f8f73c0eb70bbc17155a031abb39e" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 4</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N4<br>             <b>Krampus:</b> K4<br><br>             <b>Kind-ID:</b> 18<br>             <b>Adresse:</b> Blumenstraße16, 85414 Kirchdorf <br><br>             <b>GPS:</b> 48.458248, 11.652058             </div>`)[0];
+                popup_1025da2979bf5ef44359aa40d8be584c.setContent(html_d60f8f73c0eb70bbc17155a031abb39e);
+            
+        
+
+        marker_56233a1a492cb164aeca593c1e506c29.bindPopup(popup_1025da2979bf5ef44359aa40d8be584c)
+        ;
+
+        
+    
+    
+            marker_56233a1a492cb164aeca593c1e506c29.bindTooltip(
+                `<div>
+                     ID 18 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_56233a1a492cb164aeca593c1e506c29.setIcon(icon_1d06a5bda10802ddd13c1578cf22e3ba);
+            
+    
+            var circle_marker_22d39a3260aa4da08a481719f2efb9a2 = L.circleMarker(
+                [48.458248, 11.652058],
+                {"bubblingMouseEvents": true, "color": "#ff7f00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_496089d2d7d3a2d524d3f50be92be8ee = L.marker(
+                [48.458248, 11.652058],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_c2012b40d5a7a30f76e4532fb335301f = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_496089d2d7d3a2d524d3f50be92be8ee.setIcon(div_icon_c2012b40d5a7a30f76e4532fb335301f);
+            
+    
+            var marker_6cd7e7446c563d6552aa59fb56cbffe9 = L.marker(
+                [48.429034, 11.595351],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_f1ddd8cf96a2ea43be3c1ae87213e8f8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_709531f683fe54005f5ea59bc9632ed2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_96ecdd9153d9f433bfb5edc42ed6fe39 = $(`<div id="html_96ecdd9153d9f433bfb5edc42ed6fe39" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 4</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N4<br>             <b>Krampus:</b> K4<br><br>             <b>Kind-ID:</b> 28<br>             <b>Adresse:</b> 85391, Allershausen, Mozartstraße 11<br><br>             <b>GPS:</b> 48.429034, 11.595351             </div>`)[0];
+                popup_709531f683fe54005f5ea59bc9632ed2.setContent(html_96ecdd9153d9f433bfb5edc42ed6fe39);
+            
+        
+
+        marker_6cd7e7446c563d6552aa59fb56cbffe9.bindPopup(popup_709531f683fe54005f5ea59bc9632ed2)
+        ;
+
+        
+    
+    
+            marker_6cd7e7446c563d6552aa59fb56cbffe9.bindTooltip(
+                `<div>
+                     ID 28 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6cd7e7446c563d6552aa59fb56cbffe9.setIcon(icon_f1ddd8cf96a2ea43be3c1ae87213e8f8);
+            
+    
+            var circle_marker_5f078b901a3b30d7ff4a18501c91786d = L.circleMarker(
+                [48.429034, 11.595351],
+                {"bubblingMouseEvents": true, "color": "#ff7f00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_3bc3a1e5de730fb41370ed82a0c58861 = L.marker(
+                [48.429034, 11.595351],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_5a121492b8ba29e4195d319687777be5 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_3bc3a1e5de730fb41370ed82a0c58861.setIcon(div_icon_5a121492b8ba29e4195d319687777be5);
+            
+    
+            var poly_line_ed45bb48d2b2355cdf61413301f6b56a = L.polyline(
+                [[48.4061470031738, 11.5870094299316], [48.4061470031738, 11.5870094299316], [48.4036712646484, 11.5859012603759]],
+                {"bubblingMouseEvents": true, "color": "#ffff33", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#ffff33", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_2dd81c6f49e892b98c550a6799f42e55 = L.marker(
+                [48.4061470031738, 11.5870094299316],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_b69177c9f73755b402c67ae1c1a4a6fb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_38d61f373232856bdac1024e442d6db2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f35f7ed0ad63d70fc750418ea023f7ee = $(`<div id="html_f35f7ed0ad63d70fc750418ea023f7ee" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 5</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N5<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 15<br>             <b>Adresse:</b> Dorfstraße 39c, Leonhardsbuch, 85391<br><br>             <b>GPS:</b> 48.406147, 11.587009             </div>`)[0];
+                popup_38d61f373232856bdac1024e442d6db2.setContent(html_f35f7ed0ad63d70fc750418ea023f7ee);
+            
+        
+
+        marker_2dd81c6f49e892b98c550a6799f42e55.bindPopup(popup_38d61f373232856bdac1024e442d6db2)
+        ;
+
+        
+    
+    
+            marker_2dd81c6f49e892b98c550a6799f42e55.bindTooltip(
+                `<div>
+                     ID 15 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2dd81c6f49e892b98c550a6799f42e55.setIcon(icon_b69177c9f73755b402c67ae1c1a4a6fb);
+            
+    
+            var circle_marker_3a80561d522030a51c438056d853c037 = L.circleMarker(
+                [48.4061470031738, 11.5870094299316],
+                {"bubblingMouseEvents": true, "color": "#ffff33", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_fc14372cb532abd753f093fcf9126823 = L.marker(
+                [48.4061470031738, 11.5870094299316],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_d1a5412ceb6e489d5f7f920ed97ecd10 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_fc14372cb532abd753f093fcf9126823.setIcon(div_icon_d1a5412ceb6e489d5f7f920ed97ecd10);
+            
+    
+            var marker_6935b1b77191aaf93a91588564f95bab = L.marker(
+                [48.4061470031738, 11.5870094299316],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_c5ff290234fffdea32a0d5238532202a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cb29bc25ea4eb2d0fc2a16dac931ad0a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_423a4b0e51bc0dfda32ae30573125dc9 = $(`<div id="html_423a4b0e51bc0dfda32ae30573125dc9" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 5</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N5<br>             <b>Krampus:</b> K5<br><br>             <b>Kind-ID:</b> 17<br>             <b>Adresse:</b> 85391 Allershausen/Leonhardsbuch, Dorfstr.39c, <br><br>             <b>GPS:</b> 48.406147, 11.587009             </div>`)[0];
+                popup_cb29bc25ea4eb2d0fc2a16dac931ad0a.setContent(html_423a4b0e51bc0dfda32ae30573125dc9);
+            
+        
+
+        marker_6935b1b77191aaf93a91588564f95bab.bindPopup(popup_cb29bc25ea4eb2d0fc2a16dac931ad0a)
+        ;
+
+        
+    
+    
+            marker_6935b1b77191aaf93a91588564f95bab.bindTooltip(
+                `<div>
+                     ID 17 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6935b1b77191aaf93a91588564f95bab.setIcon(icon_c5ff290234fffdea32a0d5238532202a);
+            
+    
+            var circle_marker_59c3a390a146cfe3eebd6f9e987eef99 = L.circleMarker(
+                [48.4061470031738, 11.5870094299316],
+                {"bubblingMouseEvents": true, "color": "#ffff33", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_22dd65f3d044d3fb71f6c31110e12779 = L.marker(
+                [48.4061470031738, 11.5870094299316],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_7f918602119609cfdf9e302b27169487 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_22dd65f3d044d3fb71f6c31110e12779.setIcon(div_icon_7f918602119609cfdf9e302b27169487);
+            
+    
+            var marker_0d589e5e0af0aaf6b36448798bdef80d = L.marker(
+                [48.4036712646484, 11.5859012603759],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_bccae0c2703153b233dea28063fcf978 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8efff1786c6358d9d42ca35182712d65 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a31b46cfe20023b1b8fa6b35b1c450c1 = $(`<div id="html_a31b46cfe20023b1b8fa6b35b1c450c1" style="width: 100.0%; height: 100.0%;">             <b>Stop 3</b><br>             <b>Team 5</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N5<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 29<br>             <b>Adresse:</b> Am Kirchberg 5c, 85391 Leonhardsbuch <br><br>             <b>GPS:</b> 48.403671, 11.585901             </div>`)[0];
+                popup_8efff1786c6358d9d42ca35182712d65.setContent(html_a31b46cfe20023b1b8fa6b35b1c450c1);
+            
+        
+
+        marker_0d589e5e0af0aaf6b36448798bdef80d.bindPopup(popup_8efff1786c6358d9d42ca35182712d65)
+        ;
+
+        
+    
+    
+            marker_0d589e5e0af0aaf6b36448798bdef80d.bindTooltip(
+                `<div>
+                     ID 29 - Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0d589e5e0af0aaf6b36448798bdef80d.setIcon(icon_bccae0c2703153b233dea28063fcf978);
+            
+    
+            var circle_marker_3bc4f9b0ead14fda9dd3bbf575f066c4 = L.circleMarker(
+                [48.4036712646484, 11.5859012603759],
+                {"bubblingMouseEvents": true, "color": "#ffff33", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_81f8edb37fb3f0a43da7aff726eecbb3 = L.marker(
+                [48.4036712646484, 11.5859012603759],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_39fe042e9509b3b982f244ff5eec782b = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        3\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_81f8edb37fb3f0a43da7aff726eecbb3.setIcon(div_icon_39fe042e9509b3b982f244ff5eec782b);
+            
+    
+            var poly_line_65bd68e1a33be732177a5d4ed5f55b93 = L.polyline(
+                [[48.4354, 11.59461], [48.436824, 11.59568], [48.4360618591308, 11.5969591140747]],
+                {"bubblingMouseEvents": true, "color": "#a65628", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#a65628", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_120f2fdc649ff5a55279d0ac0ad13600 = L.marker(
+                [48.4354, 11.59461],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_35512f6e1f369d5a94175a9e7b5e3442 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4d9dede8c784565465e1da4c3f2d87f4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_46f7dd3b8c9a812cc57f026449b56db7 = $(`<div id="html_46f7dd3b8c9a812cc57f026449b56db7" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 6</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N6<br>             <b>Krampus:</b> K1<br><br>             <b>Kind-ID:</b> 20<br>             <b>Adresse:</b> 85391 Allershausen, Dominikus-Käser-Straße 33<br><br>             <b>GPS:</b> 48.435400, 11.594610             </div>`)[0];
+                popup_4d9dede8c784565465e1da4c3f2d87f4.setContent(html_46f7dd3b8c9a812cc57f026449b56db7);
+            
+        
+
+        marker_120f2fdc649ff5a55279d0ac0ad13600.bindPopup(popup_4d9dede8c784565465e1da4c3f2d87f4)
+        ;
+
+        
+    
+    
+            marker_120f2fdc649ff5a55279d0ac0ad13600.bindTooltip(
+                `<div>
+                     ID 20 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_120f2fdc649ff5a55279d0ac0ad13600.setIcon(icon_35512f6e1f369d5a94175a9e7b5e3442);
+            
+    
+            var circle_marker_aba986d610f58d6435f96b013797117d = L.circleMarker(
+                [48.4354, 11.59461],
+                {"bubblingMouseEvents": true, "color": "#a65628", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_4b04db7d9cfa9659fa40d3e38ae0b7fa = L.marker(
+                [48.4354, 11.59461],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_b1ff4908af82e5876d461cfbad0506ab = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_4b04db7d9cfa9659fa40d3e38ae0b7fa.setIcon(div_icon_b1ff4908af82e5876d461cfbad0506ab);
+            
+    
+            var marker_f29e8370ac0257c0490f24203b332a11 = L.marker(
+                [48.436824, 11.59568],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_67ae36acd415df1e3226fb2bb17ecc26 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2c2678f7f6b0b99c006b0c03063a0a64 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d249bf3c9856e4417fe7043c5285e3ef = $(`<div id="html_d249bf3c9856e4417fe7043c5285e3ef" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 6</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N6<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 22<br>             <b>Adresse:</b> 85391 Allershausen, Kohlstattweg 10<br><br>             <b>GPS:</b> 48.436824, 11.595680             </div>`)[0];
+                popup_2c2678f7f6b0b99c006b0c03063a0a64.setContent(html_d249bf3c9856e4417fe7043c5285e3ef);
+            
+        
+
+        marker_f29e8370ac0257c0490f24203b332a11.bindPopup(popup_2c2678f7f6b0b99c006b0c03063a0a64)
+        ;
+
+        
+    
+    
+            marker_f29e8370ac0257c0490f24203b332a11.bindTooltip(
+                `<div>
+                     ID 22 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f29e8370ac0257c0490f24203b332a11.setIcon(icon_67ae36acd415df1e3226fb2bb17ecc26);
+            
+    
+            var circle_marker_0c6917e46c3655c7a526cc6feb2cc8c7 = L.circleMarker(
+                [48.436824, 11.59568],
+                {"bubblingMouseEvents": true, "color": "#a65628", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_7c8f0bbdace1a471e908b3295c80d1b4 = L.marker(
+                [48.436824, 11.59568],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_3c93ae95946823186e0bb8ab8b2f6fd4 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_7c8f0bbdace1a471e908b3295c80d1b4.setIcon(div_icon_3c93ae95946823186e0bb8ab8b2f6fd4);
+            
+    
+            var marker_133021c59e81b4bd8d04afe4335d0dc7 = L.marker(
+                [48.4360618591308, 11.5969591140747],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_dca0c042ca5a9b8188dec595531f9643 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e221ec727970c1ab93eb4d5e2bec4cf9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_707573d5e69018c7efb3c1ac9b1ef1de = $(`<div id="html_707573d5e69018c7efb3c1ac9b1ef1de" style="width: 100.0%; height: 100.0%;">             <b>Stop 3</b><br>             <b>Team 6</b><br>             6.12 Samstag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N6<br>             <b>Krampus:</b> K1<br><br>             <b>Kind-ID:</b> 41<br>             <b>Adresse:</b> 85391, Allershausen, Dominikus-Käser-Str. 18<br><br>             <b>GPS:</b> 48.436062, 11.596959             </div>`)[0];
+                popup_e221ec727970c1ab93eb4d5e2bec4cf9.setContent(html_707573d5e69018c7efb3c1ac9b1ef1de);
+            
+        
+
+        marker_133021c59e81b4bd8d04afe4335d0dc7.bindPopup(popup_e221ec727970c1ab93eb4d5e2bec4cf9)
+        ;
+
+        
+    
+    
+            marker_133021c59e81b4bd8d04afe4335d0dc7.bindTooltip(
+                `<div>
+                     ID 41 - Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_133021c59e81b4bd8d04afe4335d0dc7.setIcon(icon_dca0c042ca5a9b8188dec595531f9643);
+            
+    
+            var circle_marker_21f3b6b4d2ad491d1270c7cb1eca42a6 = L.circleMarker(
+                [48.4360618591308, 11.5969591140747],
+                {"bubblingMouseEvents": true, "color": "#a65628", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_fd5e9009546e399172b0ab373ca8c0d4 = L.marker(
+                [48.4360618591308, 11.5969591140747],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_63ec670a752667f1e084d4010be195a5 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        3\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_fd5e9009546e399172b0ab373ca8c0d4.setIcon(div_icon_63ec670a752667f1e084d4010be195a5);
+            
+    
+            var poly_line_64780075f0c70130737ecfe53478601d = L.polyline(
+                [[48.4335757, 11.6014452], [48.436142, 11.594083], [48.436115, 11.593451]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_a095f27394a491c8e32cf67dc5b37254 = L.marker(
+                [48.4335757, 11.6014452],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_7049c9a0f929aee96288b1ea4aa5a0d1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8a9b4e6d809bfd94a77089feaf222f08 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a9b0abaa14a0d1310be0a05093b687ab = $(`<div id="html_a9b0abaa14a0d1310be0a05093b687ab" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 1</b><br>             6.12 Samstag, 18-19 Uhr<br><br>             <b>Nikolaus:</b> N7<br>             <b>Krampus:</b> K2<br><br>             <b>Kind-ID:</b> 13<br>             <b>Adresse:</b> Kirchstraße 7b <br><br>             <b>GPS:</b> 48.433576, 11.601445             </div>`)[0];
+                popup_8a9b4e6d809bfd94a77089feaf222f08.setContent(html_a9b0abaa14a0d1310be0a05093b687ab);
+            
+        
+
+        marker_a095f27394a491c8e32cf67dc5b37254.bindPopup(popup_8a9b4e6d809bfd94a77089feaf222f08)
+        ;
+
+        
+    
+    
+            marker_a095f27394a491c8e32cf67dc5b37254.bindTooltip(
+                `<div>
+                     ID 13 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a095f27394a491c8e32cf67dc5b37254.setIcon(icon_7049c9a0f929aee96288b1ea4aa5a0d1);
+            
+    
+            var circle_marker_acb92ac238bba3dd5228a2b099c1ea90 = L.circleMarker(
+                [48.4335757, 11.6014452],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_d3a41bea3be3998befa98dd5f500d5ac = L.marker(
+                [48.4335757, 11.6014452],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_c494cc58981bda750571ba502d7d5113 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_d3a41bea3be3998befa98dd5f500d5ac.setIcon(div_icon_c494cc58981bda750571ba502d7d5113);
+            
+    
+            var marker_72319add1dfa8af6f279e4b1b99352e6 = L.marker(
+                [48.436142, 11.594083],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_4815e45e62ccbf4a4d69e27f51ab259f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7de56302a0783b4a67efc8327e0c1391 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5c45e2b17caa6b10f876a706111dc566 = $(`<div id="html_5c45e2b17caa6b10f876a706111dc566" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 1</b><br>             6.12 Samstag, 18-19 Uhr<br><br>             <b>Nikolaus:</b> N7<br>             <b>Krampus:</b> -<br><br>             <b>Kind-ID:</b> 24<br>             <b>Adresse:</b> 85391, Allershausen, Amselweg, 2a<br><br>             <b>GPS:</b> 48.436142, 11.594083             </div>`)[0];
+                popup_7de56302a0783b4a67efc8327e0c1391.setContent(html_5c45e2b17caa6b10f876a706111dc566);
+            
+        
+
+        marker_72319add1dfa8af6f279e4b1b99352e6.bindPopup(popup_7de56302a0783b4a67efc8327e0c1391)
+        ;
+
+        
+    
+    
+            marker_72319add1dfa8af6f279e4b1b99352e6.bindTooltip(
+                `<div>
+                     ID 24 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_72319add1dfa8af6f279e4b1b99352e6.setIcon(icon_4815e45e62ccbf4a4d69e27f51ab259f);
+            
+    
+            var circle_marker_eb6d7e70a1f6241d26cef201354db99f = L.circleMarker(
+                [48.436142, 11.594083],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_04e8d3b2fea3e46eaa98f5479eaa14ab = L.marker(
+                [48.436142, 11.594083],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_20cdc5409fb2c81ff770035d33aa919b = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_04e8d3b2fea3e46eaa98f5479eaa14ab.setIcon(div_icon_20cdc5409fb2c81ff770035d33aa919b);
+            
+    
+            var marker_c9b9a15091bc7c4c4bd02cc89788466f = L.marker(
+                [48.436115, 11.593451],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_d2beb8ad8dc0fd405d30267b6d46a0ec = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_64c75b39e4e655157b188867492f6b49 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_addf2886d1c01f08f8ad2e4dfb0a2ad4 = $(`<div id="html_addf2886d1c01f08f8ad2e4dfb0a2ad4" style="width: 100.0%; height: 100.0%;">             <b>Stop 3</b><br>             <b>Team 1</b><br>             6.12 Samstag, 18-19 Uhr<br><br>             <b>Nikolaus:</b> N7<br>             <b>Krampus:</b> K2<br><br>             <b>Kind-ID:</b> 25<br>             <b>Adresse:</b> Drosselweg 1 Allershausen <br><br>             <b>GPS:</b> 48.436115, 11.593451             </div>`)[0];
+                popup_64c75b39e4e655157b188867492f6b49.setContent(html_addf2886d1c01f08f8ad2e4dfb0a2ad4);
+            
+        
+
+        marker_c9b9a15091bc7c4c4bd02cc89788466f.bindPopup(popup_64c75b39e4e655157b188867492f6b49)
+        ;
+
+        
+    
+    
+            marker_c9b9a15091bc7c4c4bd02cc89788466f.bindTooltip(
+                `<div>
+                     ID 25 - Stop 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c9b9a15091bc7c4c4bd02cc89788466f.setIcon(icon_d2beb8ad8dc0fd405d30267b6d46a0ec);
+            
+    
+            var circle_marker_26750d583b0c990f5500d45b9a26770b = L.circleMarker(
+                [48.436115, 11.593451],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_8e4c989ce5e6678fb1f31fb6ed93f889 = L.marker(
+                [48.436115, 11.593451],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_cdc4068eafa2a9ee3d4521ffbcb83241 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        3\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_8e4c989ce5e6678fb1f31fb6ed93f889.setIcon(div_icon_cdc4068eafa2a9ee3d4521ffbcb83241);
+            
+    
+            var poly_line_5eedfdb0a25748e33d08ce3ef832e536 = L.polyline(
+                [[48.4249839782714, 11.5921087265014]],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4daf4a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_8cf8b879158317085901839959ebc61d = L.marker(
+                [48.4249839782714, 11.5921087265014],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_7586555bbfce805f8719957ff262fa58 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7f761c62b68dc012919a167427de672f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_49042a65e71aaa5129a1191d92382373 = $(`<div id="html_49042a65e71aaa5129a1191d92382373" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 2</b><br>             6.12 Samstag, 18-19 Uhr<br><br>             <b>Nikolaus:</b> N1<br>             <b>Krampus:</b> K1<br><br>             <b>Kind-ID:</b> 42<br>             <b>Adresse:</b> 85391, Allershausen , Adalharstr. 62 <br><br>             <b>GPS:</b> 48.424984, 11.592109             </div>`)[0];
+                popup_7f761c62b68dc012919a167427de672f.setContent(html_49042a65e71aaa5129a1191d92382373);
+            
+        
+
+        marker_8cf8b879158317085901839959ebc61d.bindPopup(popup_7f761c62b68dc012919a167427de672f)
+        ;
+
+        
+    
+    
+            marker_8cf8b879158317085901839959ebc61d.bindTooltip(
+                `<div>
+                     ID 42 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8cf8b879158317085901839959ebc61d.setIcon(icon_7586555bbfce805f8719957ff262fa58);
+            
+    
+            var circle_marker_aa88fd3e3c9c04b05cad277b7008f639 = L.circleMarker(
+                [48.4249839782714, 11.5921087265014],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_26b09dbbc738774c50d3ab77960b2e64 = L.marker(
+                [48.4249839782714, 11.5921087265014],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_a9aa1f3b9b3925e8ea3208e97862369f = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_26b09dbbc738774c50d3ab77960b2e64.setIcon(div_icon_a9aa1f3b9b3925e8ea3208e97862369f);
+            
+    
+            var poly_line_fe3a2a2cfccc27a96cd33ac42e55e242 = L.polyline(
+                [[48.439361, 11.581596]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_b5fd003597749691803ba71c56953d7e = L.marker(
+                [48.439361, 11.581596],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_c5e26b35462f0cadc8dc1cb149530195 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9d42bb67d0eac38d0ebb3505724442f7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c4a04a9c74a0d271ce1383522cd060fd = $(`<div id="html_c4a04a9c74a0d271ce1383522cd060fd" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 1</b><br>             6.12 Samstag, 19-20 Uhr<br><br>             <b>Nikolaus:</b> N2<br>             <b>Krampus:</b> K2<br><br>             <b>Kind-ID:</b> 23<br>             <b>Adresse:</b> Bergstraße 17, 85391 Allershausen<br><br>             <b>GPS:</b> 48.439361, 11.581596             </div>`)[0];
+                popup_9d42bb67d0eac38d0ebb3505724442f7.setContent(html_c4a04a9c74a0d271ce1383522cd060fd);
+            
+        
+
+        marker_b5fd003597749691803ba71c56953d7e.bindPopup(popup_9d42bb67d0eac38d0ebb3505724442f7)
+        ;
+
+        
+    
+    
+            marker_b5fd003597749691803ba71c56953d7e.bindTooltip(
+                `<div>
+                     ID 23 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b5fd003597749691803ba71c56953d7e.setIcon(icon_c5e26b35462f0cadc8dc1cb149530195);
+            
+    
+            var circle_marker_5b22980bd299baa15530f58b452b08d7 = L.circleMarker(
+                [48.439361, 11.581596],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_35b6df9393374d8cc5ee85c2258bc8d0 = L.marker(
+                [48.439361, 11.581596],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_9f4f6169eeb97e0626088ed65bc7c67b = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_35b6df9393374d8cc5ee85c2258bc8d0.setIcon(div_icon_9f4f6169eeb97e0626088ed65bc7c67b);
+            
+    
+            var poly_line_32b01487103a6bae1b4a9627de3861c3 = L.polyline(
+                [[48.4308052062988, 11.6017570495605]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_91b607ac013e7d42af33e7998b9d4d07 = L.marker(
+                [48.4308052062988, 11.6017570495605],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var icon_951e7c756fb80dd12dc2e32e5365da6b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_56b22dded6b78a9876675fe7a69337b5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c4eb4d515b2d8786d27ac4e312762a2c = $(`<div id="html_c4eb4d515b2d8786d27ac4e312762a2c" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 1</b><br>             6.12 Samstag, später<br><br>             <b>Nikolaus:</b> N3<br>             <b>Krampus:</b> K3<br><br>             <b>Kind-ID:</b> 37<br>             <b>Adresse:</b> 85391 Allershausen, Glonntalstr. 11c<br><br>             <b>GPS:</b> 48.430805, 11.601757             </div>`)[0];
+                popup_56b22dded6b78a9876675fe7a69337b5.setContent(html_c4eb4d515b2d8786d27ac4e312762a2c);
+            
+        
+
+        marker_91b607ac013e7d42af33e7998b9d4d07.bindPopup(popup_56b22dded6b78a9876675fe7a69337b5)
+        ;
+
+        
+    
+    
+            marker_91b607ac013e7d42af33e7998b9d4d07.bindTooltip(
+                `<div>
+                     ID 37 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_91b607ac013e7d42af33e7998b9d4d07.setIcon(icon_951e7c756fb80dd12dc2e32e5365da6b);
+            
+    
+            var circle_marker_c25d0eaf6a57132fed44457581ad50ee = L.circleMarker(
+                [48.4308052062988, 11.6017570495605],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var marker_5d65a6156aeaf14b79d2cc886849ebe0 = L.marker(
+                [48.4308052062988, 11.6017570495605],
+                {
+}
+            ).addTo(feature_group_66f5bbf76c227a3dbeb1249f771cea7b);
+        
+    
+            var div_icon_9ab9f47fc5e461c1c3c3c9bc7091f778 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_5d65a6156aeaf14b79d2cc886849ebe0.setIcon(div_icon_9ab9f47fc5e461c1c3c3c9bc7091f778);
+            
+    
+            feature_group_66f5bbf76c227a3dbeb1249f771cea7b.addTo(map_c289a85d4c56540c97ab65f565615a83);
+        
+    
+            var feature_group_ebeb5e32f8f270811ee580824df7c9e2 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_e8cd4884ad447eeb6daf33aa53bad547 = L.polyline(
+                [[48.4347763061523, 11.6164474487304], [48.4319455, 11.5998211]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var marker_0588afdc11d00689f382808b62d73849 = L.marker(
+                [48.4347763061523, 11.6164474487304],
+                {
+}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var icon_d479a2dbf2f31dc5cbd95004b3eb3ea4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_103ff7b5950d18f1f00f58a0232dd822 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_557ff574ef5b91e48cda47ff3bc76f35 = $(`<div id="html_557ff574ef5b91e48cda47ff3bc76f35" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 1</b><br>             7.12 Sonntag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N4<br>             <b>Krampus:</b> K4<br><br>             <b>Kind-ID:</b> 32<br>             <b>Adresse:</b> 85391 Allershausen, Kreuth 1A<br><br>             <b>GPS:</b> 48.434776, 11.616447             </div>`)[0];
+                popup_103ff7b5950d18f1f00f58a0232dd822.setContent(html_557ff574ef5b91e48cda47ff3bc76f35);
+            
+        
+
+        marker_0588afdc11d00689f382808b62d73849.bindPopup(popup_103ff7b5950d18f1f00f58a0232dd822)
+        ;
+
+        
+    
+    
+            marker_0588afdc11d00689f382808b62d73849.bindTooltip(
+                `<div>
+                     ID 32 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0588afdc11d00689f382808b62d73849.setIcon(icon_d479a2dbf2f31dc5cbd95004b3eb3ea4);
+            
+    
+            var circle_marker_e9612346dc97747d157021cea883f8d4 = L.circleMarker(
+                [48.4347763061523, 11.6164474487304],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var marker_a683d3551df6e2cceb9ef6c81606321b = L.marker(
+                [48.4347763061523, 11.6164474487304],
+                {
+}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var div_icon_9e80d3b7963f22267ea189496830d34b = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_a683d3551df6e2cceb9ef6c81606321b.setIcon(div_icon_9e80d3b7963f22267ea189496830d34b);
+            
+    
+            var marker_a5bc2c1c823a80387f087a97b203eb75 = L.marker(
+                [48.4319455, 11.5998211],
+                {
+}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var icon_e9b74076b7ed029698598588b10b45b6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5015077aa9b2ba3c795337b32e3193bb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_47978245ef771c85f9cb6c8a9ead5b98 = $(`<div id="html_47978245ef771c85f9cb6c8a9ead5b98" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 1</b><br>             7.12 Sonntag, 17-18 Uhr<br><br>             <b>Nikolaus:</b> N4<br>             <b>Krampus:</b> K4<br><br>             <b>Kind-ID:</b> 33<br>             <b>Adresse:</b> Schulstrasse 3c, 85391 Allershausen <br><br>             <b>GPS:</b> 48.431945, 11.599821             </div>`)[0];
+                popup_5015077aa9b2ba3c795337b32e3193bb.setContent(html_47978245ef771c85f9cb6c8a9ead5b98);
+            
+        
+
+        marker_a5bc2c1c823a80387f087a97b203eb75.bindPopup(popup_5015077aa9b2ba3c795337b32e3193bb)
+        ;
+
+        
+    
+    
+            marker_a5bc2c1c823a80387f087a97b203eb75.bindTooltip(
+                `<div>
+                     ID 33 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a5bc2c1c823a80387f087a97b203eb75.setIcon(icon_e9b74076b7ed029698598588b10b45b6);
+            
+    
+            var circle_marker_60215c4db4847e20dfaeadc15e14de8d = L.circleMarker(
+                [48.4319455, 11.5998211],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var marker_b8729ac5382c46df2970fe8aa014a287 = L.marker(
+                [48.4319455, 11.5998211],
+                {
+}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var div_icon_36f10b54d3987acaee19062d3dfb9642 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_b8729ac5382c46df2970fe8aa014a287.setIcon(div_icon_36f10b54d3987acaee19062d3dfb9642);
+            
+    
+            var poly_line_db96f314c6bdc46fa958920d654de97d = L.polyline(
+                [[48.4361695, 11.5922389], [48.4261512756347, 11.5949268341064]],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#377eb8", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var marker_2e7b24f56887218c6c993811375c7e8d = L.marker(
+                [48.4361695, 11.5922389],
+                {
+}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var icon_c6e957ceb84c1b39d6b2b840344d8aec = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_db82cd3f59387a6ee217a50643fe7260 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_07a64aa8380d35fabb16996b88687543 = $(`<div id="html_07a64aa8380d35fabb16996b88687543" style="width: 100.0%; height: 100.0%;">             <b>Stop 1</b><br>             <b>Team 1</b><br>             7.12 Sonntag, 18-19 Uhr<br><br>             <b>Nikolaus:</b> N5<br>             <b>Krampus:</b> K5<br><br>             <b>Kind-ID:</b> 34<br>             <b>Adresse:</b> 85391 Allershausen Dom.-Käser-Straße. 21a<br><br>             <b>GPS:</b> 48.436169, 11.592239             </div>`)[0];
+                popup_db82cd3f59387a6ee217a50643fe7260.setContent(html_07a64aa8380d35fabb16996b88687543);
+            
+        
+
+        marker_2e7b24f56887218c6c993811375c7e8d.bindPopup(popup_db82cd3f59387a6ee217a50643fe7260)
+        ;
+
+        
+    
+    
+            marker_2e7b24f56887218c6c993811375c7e8d.bindTooltip(
+                `<div>
+                     ID 34 - Stop 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2e7b24f56887218c6c993811375c7e8d.setIcon(icon_c6e957ceb84c1b39d6b2b840344d8aec);
+            
+    
+            var circle_marker_2885fa7ad5f91aedd895f092f6e506a7 = L.circleMarker(
+                [48.4361695, 11.5922389],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var marker_68b5ce7d5e1aaa42185a5b71a69f8c45 = L.marker(
+                [48.4361695, 11.5922389],
+                {
+}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var div_icon_eefa126c0690532f2bd35514fef31ba3 = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        1\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_68b5ce7d5e1aaa42185a5b71a69f8c45.setIcon(div_icon_eefa126c0690532f2bd35514fef31ba3);
+            
+    
+            var marker_f5bf23242e6f7209b27e9360cf119bc2 = L.marker(
+                [48.4261512756347, 11.5949268341064],
+                {
+}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var icon_421829ea652f959f552ca5362374df92 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user-times",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1e959334e4eb58afa79e77569db28c5d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_03db387a130d2f016b8f25e2d125ad8a = $(`<div id="html_03db387a130d2f016b8f25e2d125ad8a" style="width: 100.0%; height: 100.0%;">             <b>Stop 2</b><br>             <b>Team 1</b><br>             7.12 Sonntag, 18-19 Uhr<br><br>             <b>Nikolaus:</b> N5<br>             <b>Krampus:</b> K5<br><br>             <b>Kind-ID:</b> 40<br>             <b>Adresse:</b> 85391 Allershausen, Franz-Liszt-Str. 22<br><br>             <b>GPS:</b> 48.426151, 11.594927             </div>`)[0];
+                popup_1e959334e4eb58afa79e77569db28c5d.setContent(html_03db387a130d2f016b8f25e2d125ad8a);
+            
+        
+
+        marker_f5bf23242e6f7209b27e9360cf119bc2.bindPopup(popup_1e959334e4eb58afa79e77569db28c5d)
+        ;
+
+        
+    
+    
+            marker_f5bf23242e6f7209b27e9360cf119bc2.bindTooltip(
+                `<div>
+                     ID 40 - Stop 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f5bf23242e6f7209b27e9360cf119bc2.setIcon(icon_421829ea652f959f552ca5362374df92);
+            
+    
+            var circle_marker_053aae3efbd5113c15aa514bdd48901f = L.circleMarker(
+                [48.4261512756347, 11.5949268341064],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "white", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var marker_0a57bdb7b1a3b8aa9d6066a06c95b28b = L.marker(
+                [48.4261512756347, 11.5949268341064],
+                {
+}
+            ).addTo(feature_group_ebeb5e32f8f270811ee580824df7c9e2);
+        
+    
+            var div_icon_c5869b4c1e921960041fb0d3588754ce = L.divIcon({
+  "html": "\n                    \u003cdiv style=\"font-size: 10pt; color: black; font-weight: bold;\"\u003e\n                        2\n                    \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_0a57bdb7b1a3b8aa9d6066a06c95b28b.setIcon(div_icon_c5869b4c1e921960041fb0d3588754ce);
+            
+    
+            feature_group_ebeb5e32f8f270811ee580824df7c9e2.addTo(map_c289a85d4c56540c97ab65f565615a83);
+        
+    
+            var layer_control_33913b72f00475a69b489d03ec5433ac_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_576e5ef8a9e7b5988f6538bd6b1ec3bb,
+                },
+                overlays :  {
+                    "5.12 Freitag" : feature_group_1d6e0a2239004ea657967e8cdba97f95,
+                    "6.12 Samstag" : feature_group_66f5bbf76c227a3dbeb1249f771cea7b,
+                    "7.12 Sonntag" : feature_group_ebeb5e32f8f270811ee580824df7c9e2,
+                },
+            };
+            let layer_control_33913b72f00475a69b489d03ec5433ac = L.control.layers(
+                layer_control_33913b72f00475a69b489d03ec5433ac_layers.base_layers,
+                layer_control_33913b72f00475a69b489d03ec5433ac_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_c289a85d4c56540c97ab65f565615a83);
+
+        
+</script>
+</html>
