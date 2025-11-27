@@ -1049,6 +1049,10 @@ def main(input_file, output_dir='outputs', use_nominatim=True,
         df['Krampus?'] = df['Krampus?'].astype(str).str.lower().str.strip()
     
     print(f"✓ {len(df)} Besuche geladen")
+
+    # Normalisiere Spaltennamen (Case-Insensitive für Latitude/Longitude)
+    df.rename(columns=lambda x: 'Latitude' if x.strip().lower() == 'latitude' else x, inplace=True)
+    df.rename(columns=lambda x: 'Longitude' if x.strip().lower() == 'longitude' else x, inplace=True)
     
     # 2. Bedarfsanalyse
     demand_info = analyze_demand(df, puffer_nikolaus, puffer_krampus)
