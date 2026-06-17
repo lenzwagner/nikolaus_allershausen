@@ -1,0 +1,10 @@
+.env
+data/raw/api_tennis/
+data/processed/
+models/*.json
+models/*.pkl
+__pycache__/
+*.pyc
+.DS_Store
+reports/
+*.log

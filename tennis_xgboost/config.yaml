@@ -1,0 +1,22 @@
+api_tennis:
+  base_url: "https://api.tennis-data.co.uk/v1/"
+  lookback_years: 5
+  sleep_between_calls: 0.5
+
+elo:
+  k_factor: 32
+
+rolling:
+  form_window: 10
+  serve_stats_window: 15
+  surface_form_window: 10
+
+weights:
+  surface_boost: 2.5
+  grand_slam_weeks_radius: 4
+  grand_slam_boost: 1.5
+  recency_lambda: 0.5
+  injury_match_weight: 0.5
+
+split:
+  test_weeks: 52
