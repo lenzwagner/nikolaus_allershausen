@@ -20,7 +20,12 @@ OUTPUT = ROOT / "data" / "processed" / "matches_with_rolling.parquet"
 
 
 def safe_div(a, b, default=np.nan):
-    return np.where(b > 0, a / b, default)
+    try:
+        if np.isnan(a) or np.isnan(b) or b == 0:
+            return default
+        return float(a) / float(b)
+    except Exception:
+        return default
 
 
 def compute_rolling(df: pd.DataFrame, force: bool = False) -> pd.DataFrame:
@@ -144,13 +149,6 @@ def _rolling_features(hist: list, prefix: str, surface: str, form_w: int, serve_
     surf_first_serve_pct = safe_div(surf_first_won, surf_first_in)
     surf_second_serve_pct = safe_div(surf_second_won, surf_svpt - surf_first_in if not np.isnan(surf_svpt) and not np.isnan(surf_first_in) else np.nan)
     surf_bp_saved_pct = safe_div(surf_bp_saved, surf_bp_faced)
-
-    if isinstance(first_serve_pct, np.ndarray):
-        first_serve_pct = float(first_serve_pct[0]) if len(first_serve_pct) > 0 else np.nan
-    if isinstance(second_serve_pct, np.ndarray):
-        second_serve_pct = float(second_serve_pct[0]) if len(second_serve_pct) > 0 else np.nan
-    if isinstance(bp_saved_pct, np.ndarray):
-        bp_saved_pct = float(bp_saved_pct[0]) if len(bp_saved_pct) > 0 else np.nan
 
     return {
         f"form_{prefix}": form,

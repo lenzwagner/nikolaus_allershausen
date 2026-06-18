@@ -92,6 +92,10 @@ def run_pipeline(force: bool = False):
     from train import train_all
     train_all(force=force)
 
+    # Phase 10b – Random Forest training (3 surface models)
+    from train_rf import train_rf_all
+    train_rf_all(force=force)
+
     # Phase 11 – Evaluation
     from evaluate import evaluate_all
     evaluate_all(force=force)
@@ -100,7 +104,7 @@ def run_pipeline(force: bool = False):
     from calibrate import calibrate_all
     calibrate_all(force=force)
 
-    log.info("=== Tennis XGBoost Pipeline END ===")
+    log.info("=== Tennis XGBoost + RF Pipeline END ===")
 
 
 if __name__ == "__main__":

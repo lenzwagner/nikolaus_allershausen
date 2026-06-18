@@ -223,24 +223,37 @@ def build_feature_vector(player_a: str, player_b: str, surface: str,
     return pd.DataFrame([feat])
 
 
-def predict(player_a: str, player_b: str, surface: str, level: str, tour: str):
-    surface_cap = surface.capitalize()
-    calibrated_path = ROOT / "models" / f"xgb_{surface.lower()}_calibrated.pkl"
-    model_path = ROOT / "models" / f"xgb_{surface.lower()}.json"
+def _load_model(surface: str, model_type: str):
+    """Load a trained model. model_type: 'xgb' or 'rf'."""
+    if model_type == "rf":
+        path = ROOT / "models" / f"rf_{surface.lower()}.pkl"
+        if not path.exists():
+            return None, None
+        with open(path, "rb") as f:
+            return pickle.load(f), "RandomForest"
 
-    if not model_path.exists():
-        print(f"\nModel not found: {model_path}")
+    # XGBoost: prefer calibrated version
+    calibrated = ROOT / "models" / f"xgb_{surface.lower()}_calibrated.pkl"
+    base_path = ROOT / "models" / f"xgb_{surface.lower()}.json"
+    if calibrated.exists():
+        with open(calibrated, "rb") as f:
+            return pickle.load(f), "XGBoost (calibrated)"
+    if base_path.exists():
+        m = xgb.XGBClassifier(**XGB_PARAMS)
+        m.load_model(str(base_path))
+        return m, "XGBoost"
+    return None, None
+
+
+def predict(player_a: str, player_b: str, surface: str, level: str, tour: str,
+            model_type: str = "xgb"):
+    surface_cap = surface.capitalize()
+    model, model_label = _load_model(surface, model_type)
+
+    if model is None:
+        print(f"\nModel not found for surface={surface_cap}, type={model_type}.")
         print("Run  python run_pipeline.py  first to train the models.")
         return
-
-    if calibrated_path.exists():
-        with open(calibrated_path, "rb") as f:
-            model = pickle.load(f)
-        model_label = "calibrated"
-    else:
-        model = xgb.XGBClassifier(**XGB_PARAMS)
-        model.load_model(str(model_path))
-        model_label = "base"
 
     h2h_path = ROOT / "data" / "processed" / "matches_with_h2h.parquet"
     if not h2h_path.exists():
@@ -255,22 +268,21 @@ def predict(player_a: str, player_b: str, surface: str, level: str, tour: str):
     proba_a = float(model.predict_proba(X_model)[0][1])
     proba_b = 1.0 - proba_a
 
-    print(f"\nSurface-Modell: {surface_cap} ({model_label})")
-    print(f"{player_a}:  {proba_a*100:.1f}%")
-    print(f"{player_b}: {proba_b*100:.1f}%")
+    print(f"\nSurface-Modell: {surface_cap} | Modell: {model_label}")
+    print(f"  {player_a:<30}  {proba_a*100:.1f}%")
+    print(f"  {player_b:<30}  {proba_b*100:.1f}%")
 
-    # Feature importance / top diffs
     base = getattr(model, "estimator", model)
     if hasattr(base, "feature_importances_"):
         imp = pd.Series(base.feature_importances_, index=available)
         top = imp.nlargest(5)
-        print("\nTop Features (Δ):")
+        print("\n  Top Features:")
         for feat_name, _ in top.items():
             val = X[feat_name].iloc[0] if feat_name in X.columns else "N/A"
-            if isinstance(val, float):
-                print(f"  {feat_name:<40} {val:+.3f}")
+            if isinstance(val, (int, float)) and not np.isnan(float(val)):
+                print(f"    {feat_name:<40} {float(val):+.3f}")
             else:
-                print(f"  {feat_name:<40} {val}")
+                print(f"    {feat_name:<40} {val}")
     print()
 
 
@@ -282,5 +294,8 @@ if __name__ == "__main__":
     parser.add_argument("--level", default="atp250",
                         help="Tournament level: grandslam | masters | atp500 | atp250")
     parser.add_argument("--tour", default="atp", choices=["atp", "wta"])
+    parser.add_argument("--model", default="xgb", choices=["xgb", "rf"],
+                        help="Model type: xgb (XGBoost) or rf (Random Forest)")
     args = parser.parse_args()
-    predict(args.player_a, args.player_b, args.surface, args.level, args.tour)
+    predict(args.player_a, args.player_b, args.surface, args.level, args.tour,
+            model_type=args.model)
