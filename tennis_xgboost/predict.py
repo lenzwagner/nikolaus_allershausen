@@ -25,27 +25,7 @@ log = logging.getLogger(__name__)
 with open(ROOT / "config.yaml") as f:
     CFG = yaml.safe_load(f)
 
-FEATURE_COLS = [
-    "elo_diff", "elo_hard_diff", "elo_clay_diff", "elo_grass_diff",
-    "rank_a", "rank_b",
-    "h2h_count", "h2h_win_rate_a", "h2h_surface_count", "h2h_surface_win_rate_a",
-    "form_a", "form_b", "form_surface_a", "form_surface_b",
-    "days_since_last_a", "days_since_last_b",
-    "first_serve_pct_a", "first_serve_pct_b",
-    "second_serve_pct_a", "second_serve_pct_b",
-    "bp_saved_pct_a", "bp_saved_pct_b",
-    "aces_per_match_a", "aces_per_match_b",
-    "df_per_match_a", "df_per_match_b",
-    "surf_first_serve_pct_a", "surf_first_serve_pct_b",
-    "surf_second_serve_pct_a", "surf_second_serve_pct_b",
-    "surf_bp_saved_pct_a", "surf_bp_saved_pct_b",
-    "days_since_last_injury_a", "days_since_last_injury_b",
-    "is_returning_from_injury_a", "is_returning_from_injury_b",
-    "retirement_rate_12m_a", "retirement_rate_12m_b",
-    "days_since_last_injury_diff",
-    "level_encoded", "round_encoded", "surface_encoded",
-    "is_pre_grand_slam_tournament", "gs_days",
-]
+from feature_config import FEATURE_COLS
 
 XGB_PARAMS = {
     "n_estimators": 500, "max_depth": 6, "learning_rate": 0.05,
@@ -150,8 +130,17 @@ def _h2h_stats(player_a: str, player_b: str, h2h_df: pd.DataFrame) -> dict:
     }
 
 
+def _home_advantage_diff(player_a: str, player_b: str, tournament: str) -> int:
+    from home_advantage import _get_nationality, _get_tournament_country
+    tc = _get_tournament_country(tournament)
+    na = _get_nationality(player_a)
+    nb = _get_nationality(player_b)
+    return int(bool(tc) and bool(na) and tc == na) - int(bool(tc) and bool(nb) and tc == nb)
+
+
 def build_feature_vector(player_a: str, player_b: str, surface: str,
-                         level: str, tour: str, h2h_df: pd.DataFrame) -> pd.DataFrame:
+                         level: str, tour: str, h2h_df: pd.DataFrame,
+                         tournament: str = "") -> pd.DataFrame:
     from tournament_context import gs_nearest_days, LEVEL_MAP as TC_LEVEL_MAP, ROUND_MAP as TC_ROUND_MAP
     from injury_features import load_injuries, compute_injury_features
 
@@ -219,6 +208,7 @@ def build_feature_vector(player_a: str, player_b: str, surface: str,
         "surface_encoded": surface_enc,
         "is_pre_grand_slam_tournament": int(0 <= gs_days_val <= 21),
         "gs_days": gs_days_val,
+        "home_advantage_diff": _home_advantage_diff(player_a, player_b, tournament),
     }
     return pd.DataFrame([feat])
 
@@ -246,7 +236,7 @@ def _load_model(surface: str, model_type: str):
 
 
 def predict(player_a: str, player_b: str, surface: str, level: str, tour: str,
-            model_type: str = "xgb"):
+            model_type: str = "xgb", tournament: str = ""):
     surface_cap = surface.capitalize()
     model, model_label = _load_model(surface, model_type)
 
@@ -261,14 +251,23 @@ def predict(player_a: str, player_b: str, surface: str, level: str, tour: str,
         return
     h2h_df = pd.read_parquet(h2h_path)
 
-    X = build_feature_vector(player_a, player_b, surface, level, tour, h2h_df)
+    X = build_feature_vector(player_a, player_b, surface, level, tour, h2h_df,
+                             tournament=tournament)
     available = [c for c in FEATURE_COLS if c in X.columns]
     X_model = X[available].fillna(0)
 
     proba_a = float(model.predict_proba(X_model)[0][1])
     proba_b = 1.0 - proba_a
 
+    home_flag = ""
+    if X.get("home_advantage_diff", pd.Series([0])).iloc[0] == 1:
+        home_flag = f"  🏠 {player_a} spielt im Heimland"
+    elif X.get("home_advantage_diff", pd.Series([0])).iloc[0] == -1:
+        home_flag = f"  🏠 {player_b} spielt im Heimland"
+
     print(f"\nSurface-Modell: {surface_cap} | Modell: {model_label}")
+    if tournament:
+        print(f"Turnier: {tournament}{home_flag}")
     print(f"  {player_a:<30}  {proba_a*100:.1f}%")
     print(f"  {player_b:<30}  {proba_b*100:.1f}%")
 
@@ -294,8 +293,9 @@ if __name__ == "__main__":
     parser.add_argument("--level", default="atp250",
                         help="Tournament level: grandslam | masters | atp500 | atp250")
     parser.add_argument("--tour", default="atp", choices=["atp", "wta"])
+    parser.add_argument("--tournament", default="", help="Tournament name (for home advantage)")
     parser.add_argument("--model", default="xgb", choices=["xgb", "rf"],
                         help="Model type: xgb (XGBoost) or rf (Random Forest)")
     args = parser.parse_args()
     predict(args.player_a, args.player_b, args.surface, args.level, args.tour,
-            model_type=args.model)
+            model_type=args.model, tournament=args.tournament)

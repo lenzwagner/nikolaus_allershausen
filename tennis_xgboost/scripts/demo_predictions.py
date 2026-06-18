@@ -83,7 +83,9 @@ def run_demo():
     # ── Step 5-7: Context + injuries (skip scraping, use empty files) ────────
     log.info("Step 5-7: Tournament context + injury stubs")
     from tournament_context import add_tournament_context
+    from home_advantage import add_home_advantage
     h2h_df = add_tournament_context(h2h_df)
+    h2h_df = add_home_advantage(h2h_df)
 
     inj_path = ROOT / "data" / "raw" / "injuries.csv"
     if not inj_path.exists():

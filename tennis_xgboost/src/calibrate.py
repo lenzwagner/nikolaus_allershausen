@@ -13,27 +13,9 @@ log = logging.getLogger(__name__)
 ROOT = Path(__file__).parent.parent
 MODELS_DIR = ROOT / "models"
 
-FEATURE_COLS = [
-    "elo_diff", "elo_hard_diff", "elo_clay_diff", "elo_grass_diff",
-    "rank_a", "rank_b",
-    "h2h_count", "h2h_win_rate_a", "h2h_surface_count", "h2h_surface_win_rate_a",
-    "form_a", "form_b", "form_surface_a", "form_surface_b",
-    "days_since_last_a", "days_since_last_b",
-    "first_serve_pct_a", "first_serve_pct_b",
-    "second_serve_pct_a", "second_serve_pct_b",
-    "bp_saved_pct_a", "bp_saved_pct_b",
-    "aces_per_match_a", "aces_per_match_b",
-    "df_per_match_a", "df_per_match_b",
-    "surf_first_serve_pct_a", "surf_first_serve_pct_b",
-    "surf_second_serve_pct_a", "surf_second_serve_pct_b",
-    "surf_bp_saved_pct_a", "surf_bp_saved_pct_b",
-    "days_since_last_injury_a", "days_since_last_injury_b",
-    "is_returning_from_injury_a", "is_returning_from_injury_b",
-    "retirement_rate_12m_a", "retirement_rate_12m_b",
-    "days_since_last_injury_diff",
-    "level_encoded", "round_encoded", "surface_encoded",
-    "is_pre_grand_slam_tournament", "gs_days",
-]
+import sys
+sys.path.insert(0, str(ROOT / "src"))
+from feature_config import FEATURE_COLS
 
 XGB_PARAMS = {
     "n_estimators": 500, "max_depth": 6, "learning_rate": 0.05,

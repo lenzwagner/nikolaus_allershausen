@@ -69,6 +69,10 @@ def run_pipeline(force: bool = False):
     from tournament_context import add_tournament_context
     h2h_df = add_tournament_context(h2h_df)
 
+    # Phase 6b – Home advantage
+    from home_advantage import add_home_advantage
+    h2h_df = add_home_advantage(h2h_df)
+
     # Phase 7 – Injury features
     from injury_features import add_injury_features
     full_df = add_injury_features(h2h_df, force=force)
